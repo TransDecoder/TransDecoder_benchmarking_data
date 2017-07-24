@@ -11,8 +11,8 @@ path = os.getcwd()
 #add options to inputs
 parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter,
                                  description="classify predictions as TP, FP, and identify FNs")
-parser.add_argument("--preds", type=str, required=True, help= "CDS predictions")
-parser.add_argument("--truth", type=str, required=True, help= "CDS truth (reference) set")
+parser.add_argument("--preds", type=str, required=True, help= "CDS predictions gff")
+parser.add_argument("--truth", type=str, required=True, help= "CDS truth (reference) set gff")
 
 args = parser.parse_args()
 
@@ -20,7 +20,7 @@ f_truth = open(args.truth)
 f_pred = open(args.preds)
 
 
-lines = f_truth.readlines()
+truth_lines = f_truth.readlines()
 prediction = f_pred.readlines()
 
 three_match = []
@@ -29,63 +29,89 @@ false_pos = []
 false_neg = []
 
 #store all annotations
-all_ann = []
-all_annotation = {}
-for line in lines:
-    if line.startswith('>'):
-          annotation = line.strip().split("|")[0][1:]
-          all_ann.append(annotation)
-          all_annotation[annotation] = line.strip()
+
+truth_predictions = {}
+
+for line in truth_lines:
+    line = line.strip()
+    x = line.split("\t")
+
+    transcript_id = x[0]
+    
+    truth_orf = { 'transcript_id' : transcript_id,
+                  'ref_start' : int(x[3]),
+                  'ref_end' : int(x[4]),
+                  'ref_orient' : x[6] }
+    
+    truth_predictions[transcript_id] = truth_orf
+
 
 #store all predictions
-all_pred_ann = []
+correctly_predicted_transcripts = set()
 for pred in prediction:
      line = pred.strip().split('\t')
      transcript_id = line[0].split('|')[0]
-     length = re.findall(r'length\:(.*)\|',line[0])[0]
-     ref = re.findall(r'CDS\:(.*)\|length:',line[0])[0]
-     ref_st = ref.split('-')[0]
-     ref_end = ref.split('-')[1]
-     pred_st = line[3]
-     pred_end = line[4]
-     #length = str(int(pred_end)-int(pred_st)+1)
-     result = '\t'+transcript_id+'\t'+ref_st+'\t'+ref_end+'\t'+pred_st+'\t'+pred_end+'\t'+length+'\t'
-     if ref_end == pred_end and ref_st == pred_st:
-          three_five_match.append('TP'+result+'3,5-prime\n')
-     elif ref_end == pred_end:
-          three_match.append('TP'+result+'3-prime\n')
+
+     ref_st = -1
+     ref_end = -1
+     ref_orient = '?'
+
+     if transcript_id in truth_predictions:
+         truth_struct = truth_predictions[transcript_id]
+         ref_st = truth_struct['ref_start']
+         ref_end = truth_struct['ref_end']
+         ref_orient = truth_struct['ref_orient']
+          
+     
+     pred_st = int(line[3])
+     pred_end = int(line[4])
+     pred_orient = line[6]
+     pred_length = pred_end - pred_st + 1
+     
+     result = "\t".join([transcript_id,
+                         str(ref_st), str(ref_end), ref_orient,
+                         str(pred_st), str(pred_end), pred_orient, pred_length])
+     
+     if (ref_orient == pred_orient
+         and
+         math.abs(ref_end - pred_end) < 3
+         and
+         math.abs(ref_st - pred_st) < 3 ) :
+         
+          three_five_match.append("\t".join(['TP', result, '3,5-prime']))
+          correctly_predicted_transcripts.add(transcript_id)
+
+     elif ref_orient == pred_orient and math.abs(ref_end - pred_end) < 3:
+          three_match.append("\t".join('TP', result, '3-prime'))
+          correctly_predicted_transcripts.add(transcript_id)
      else:
-          false_pos.append('FP'+result+'.\n')
-     if not transcript_id in all_pred_ann:
-         all_pred_ann.append(transcript_id)
+          false_pos.append("\t".join(['FP', result, '.']))
+
 
 #store missing predictions
-no_res = list(set(all_ann)-set(all_pred_ann))
-for pred in no_res:
-     transcript_id = pred
-     res = all_annotation[pred]
-     ref = re.findall(r'CDS\:(.*)\|length:',res)[0]
-     ref_st = ref.split('-')[0] 
-     ref_end = ref.split('-')[1]
-     pred_st = '.'
-     pred_end = '.'
-     length = re.findall(r'length\:(.*)\|',res)[0]
-     result = '\t'+transcript_id+'\t'+ref_st+'\t'+ref_end+'\t'+pred_st+'\t'+pred_end+'\t'+length+'\t'
-     false_neg.append('FN'+result+'.\n')
+no_res = list(set(truth_predictions.keys()) - correctly_predicted_transcripts)
+for transcript_id in no_res:
+    truth_struct = truth_predictions[transcript_id]
+
+    result = "\t".join([transcript_id,
+                       str(truth_struct['ref_start']), str(truth_struct['ref_end']), truth_struct['ref_orient'],
+                       '.', '.', '.', '.'])
+    
+    false_neg.append("\t".join('FN', result, '.'))
 
 
-f_out = sys.stdout
-
-f_out.write('Status\tTranscript_Id\tRef_St\tRef_End\tPred_St\tPred_End\tLength\tMatch'+'\n')
+# header
+print("\t".join(['Status', 'transcript_id', 'ref_st', 'ref_end',
+                 'pred_st', 'pred_end', 'length', 'match_type']))
 
 #write to file
-def write(lst,file_handle):
+def write(lst):
     for item in lst:
-        f_out.write(item)        
+        print(item)        
 
-write(three_five_match,f_out)
-write(three_match,f_out)
-write(false_pos,f_out)
-write(false_neg,f_out)
+write(three_five_match)
+write(three_match)
+write(false_pos)
+write(false_neg)
 
 sys.exit(0)

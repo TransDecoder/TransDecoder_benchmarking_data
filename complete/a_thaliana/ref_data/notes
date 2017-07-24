@@ -1,2 +1,0 @@
-cat athaliana-transcripts_with_utr.fasta | grep '>' | perl -lane 's/>//; @x = split(/\|/); $x[1]=~ s/CDS://; ($cds_lend, $cds_rend) = split(/-/, $x[1]); print join("\t", $x[0], ".", "CDS", "$cds_lend", "$cds_rend", ".", "+", ".", ".");' > athaliana-transcripts_with_utr.fasta.CDS.gff
-

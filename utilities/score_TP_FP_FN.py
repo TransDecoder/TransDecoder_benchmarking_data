@@ -41,7 +41,9 @@ for line in truth_lines:
     truth_orf = { 'transcript_id' : transcript_id,
                   'ref_start' : int(x[3]),
                   'ref_end' : int(x[4]),
-                  'ref_orient' : x[6] }
+                  'ref_orient' : x[6],
+                  'ref_length' : int(x[4]) - int(x[3]) + 1
+                  }
     
     truth_predictions[transcript_id] = truth_orf
 
@@ -55,13 +57,16 @@ for pred in prediction:
      ref_st = -1
      ref_end = -1
      ref_orient = '?'
+     ref_length = -1
 
      if transcript_id in truth_predictions:
          truth_struct = truth_predictions[transcript_id]
          ref_st = truth_struct['ref_start']
          ref_end = truth_struct['ref_end']
          ref_orient = truth_struct['ref_orient']
-          
+         ref_length = truth_struct['ref_length']
+     else:
+         sys.stderr.write("error, missing {} in truth set\n".format(transcript_id))
      
      pred_st = int(line[3])
      pred_end = int(line[4])
@@ -69,21 +74,22 @@ for pred in prediction:
      pred_length = pred_end - pred_st + 1
      
      result = "\t".join([transcript_id,
-                         str(ref_st), str(ref_end), ref_orient,
-                         str(pred_st), str(pred_end), pred_orient, pred_length])
+                         str(ref_st), str(ref_end), ref_orient, str(ref_length),
+                         str(pred_st), str(pred_end), pred_orient, str(pred_length)])
      
      if (ref_orient == pred_orient
          and
-         math.abs(ref_end - pred_end) < 3
+         abs(ref_end - pred_end) < 3
          and
-         math.abs(ref_st - pred_st) < 3 ) :
+         abs(ref_st - pred_st) < 3 ) :
          
           three_five_match.append("\t".join(['TP', result, '3,5-prime']))
           correctly_predicted_transcripts.add(transcript_id)
 
-     elif ref_orient == pred_orient and math.abs(ref_end - pred_end) < 3:
-          three_match.append("\t".join('TP', result, '3-prime'))
+     elif ref_orient == pred_orient and abs(ref_end - pred_end) < 3:
+          three_match.append("\t".join(['TP', result, '3-prime']))
           correctly_predicted_transcripts.add(transcript_id)
+
      else:
           false_pos.append("\t".join(['FP', result, '.']))
 
@@ -94,15 +100,16 @@ for transcript_id in no_res:
     truth_struct = truth_predictions[transcript_id]
 
     result = "\t".join([transcript_id,
-                       str(truth_struct['ref_start']), str(truth_struct['ref_end']), truth_struct['ref_orient'],
+                       str(truth_struct['ref_start']), str(truth_struct['ref_end']),
+                        truth_struct['ref_orient'], str(truth_struct['ref_length']),
                        '.', '.', '.', '.'])
     
-    false_neg.append("\t".join('FN', result, '.'))
+    false_neg.append("\t".join(['FN', result, '.']))
 
 
 # header
-print("\t".join(['Status', 'transcript_id', 'ref_st', 'ref_end',
-                 'pred_st', 'pred_end', 'length', 'match_type']))
+print("\t".join(['Status', 'transcript_id', 'ref_st', 'ref_end', 'ref_orient', 'ref_len', 
+                 'pred_st', 'pred_end', 'pred_orient', 'pred_length', 'match_type']))
 
 #write to file
 def write(lst):

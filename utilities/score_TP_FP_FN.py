@@ -1,20 +1,26 @@
+#!/usr/bin/env python
+
 #Compares the output of an algorithm with the reference
-from dependency import *
-from arguments import args
+
+import os,sys
+import re
+import argparse
+
 path = os.getcwd()
 
-#arguments
-algo = args.algorithm.lower()
-file_name = args.filename
+#add options to inputs
+parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter,
+                                 description="classify predictions as TP, FP, and identify FNs")
+parser.add_argument("--preds", type=str, required=True, help= "CDS predictions")
+parser.add_argument("--truth", type=str, required=True, help= "CDS truth (reference) set")
 
-#input files
-f_all = open(path+"/"+file_name,"r")
-f_pred = open(path+"/"+file_name+"_"+algo+"_output.gff","r")
+args = parser.parse_args()
 
-#output files
-f_out = open(path+"/"+file_name+"_"+algo+"_results","w")
+f_truth = open(args.truth)
+f_pred = open(args.preds)
 
-lines = f_all.readlines()
+
+lines = f_truth.readlines()
 prediction = f_pred.readlines()
 
 three_match = []
@@ -67,6 +73,9 @@ for pred in no_res:
      result = '\t'+transcript_id+'\t'+ref_st+'\t'+ref_end+'\t'+pred_st+'\t'+pred_end+'\t'+length+'\t'
      false_neg.append('FN'+result+'.\n')
 
+
+f_out = sys.stdout
+
 f_out.write('Status\tTranscript_Id\tRef_St\tRef_End\tPred_St\tPred_End\tLength\tMatch'+'\n')
 
 #write to file
@@ -79,6 +88,4 @@ write(three_match,f_out)
 write(false_pos,f_out)
 write(false_neg,f_out)
 
-f_all.close()
-f_pred.close()
-f_out.close()
+sys.exit(0)

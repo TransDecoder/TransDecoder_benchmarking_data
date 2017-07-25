@@ -1,7 +1,7 @@
 {
     "data" : {
-
-        "STUDY" : "a_thaliana fragments",
+        
+        "STUDY" : "d_melanogaster fragments",
         
         "REFERENCE": "input_files/dmel-all-fragments.fasta.CDS.gff",
 

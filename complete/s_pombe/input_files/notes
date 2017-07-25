@@ -1,0 +1,1 @@
+cat spombe-all.fasta  | grep '>' | perl -lane 's/>//; @x = split(/\|/); $x[1]=~ s/CDS://; ($cds_lend, $cds_rend) = split(/-/, $x[1]); print join("\t", $x[0], ".", "CDS", "$cds_lend", "$cds_rend", ".", "+", ".", ".");'  >  spombe-all.fasta.CDS.gff

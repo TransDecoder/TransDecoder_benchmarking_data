@@ -141,7 +141,7 @@ plt.plot(x_n, y_n, marker ='+')
 x_n = [0] + x_n + [1]
 y_n = [0] + y_n + [1]
 
-roc_auc = auc(x_n, y_n) #, reorder = True)
+roc_auc = auc(x_n, y_n, reorder = True)
 
 print("#AUC = %.4f" % roc_auc) 
 

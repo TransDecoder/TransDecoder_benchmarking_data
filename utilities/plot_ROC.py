@@ -1,77 +1,155 @@
+#!/usr/bin/env python
+
+import os,sys
+import re
+import matplotlib.pyplot as plt
+from matplotlib.backends.backend_pdf import PdfPages
+import numpy as np
+from sklearn.metrics import auc
+import argparse
+
+
+#add options to inputs
+parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter,
+                                 description="plot ROC ")
+
+parser.add_argument("--pred_name", type=str, required=True, help="name for prediction method")
+
+parser.add_argument("--scored_preds", type=str, required=True, help= "scored predictions including TP, FP, and FN")
+
+args = parser.parse_args()
+
+
+predictor_name = args.pred_name
+scored_preds_file = args.scored_preds
+
+
 #plot ROC curve of an algorithm
-from dependency import *
-from arguments import args
+
 path = os.getcwd()
 
-#arguments
-algo = args.algorithm.lower()
-file_name = args.filename
-num = args.i
 
 #input files
-f_pred = open(path+"/"+file_name+"_"+algo+"_results","r")
-f_out = open(path+'/'+file_name+'_'+algo+'_statistics',"w")
-#output files
-prediction = f_pred.readlines()
+
+f_pred = open(scored_preds_file)
+
+predictions = f_pred.readlines()
+
+# remove header
+predictions = predictions[1:] 
+
+"""
+Format:
+
+0       Status
+1       transcript_id
+2       ref_st
+3       ref_end
+4       ref_orient
+5       ref_len
+6       pred_st
+7       pred_end
+8       pred_orient
+9       pred_length
+10      match_type
+
+0       TP
+1       NM_102026
+2       40
+3       375
+4       +
+5       336
+6       40
+7       375
+8       +
+9       336
+10      3,5-prime
+
+"""
+
 
 len_stat = []
-for i in range(1,len(prediction)):
-     pred = prediction[i]
-     pred = pred.split('\t')
-     if not pred[0] == 'FN': 
-         l = [int(pred[5])-int(pred[4]),pred[0]]
-         len_stat.append(l)
-sort_len_stat = sorted(len_stat)
-total = len(prediction)
+for pred in predictions:
+    pred = pred.split('\t')
+    pred_result_class = pred[0]
+    if pred_result_class != 'FN':
+        pred_len = int(pred[9])
+        l = [pred_len, pred_result_class]
+        len_stat.append(l)
+
+sorted_len_stats = sorted(len_stat)
+total = len(predictions)
 
 #calculate sensitivity and specificity for a given list
-def extract_range(lst,tp,fp,fn,th_st,th_end):
-      for l in lst:
-                    if l[1] == "TP":
-                         tp +=1              
-                    if l[1] ==  "FP":
-                         fp +=1
-      fn = total-tp
-      sensitivity = float(tp)/float(tp+fn)
-      specificity = float(tp)/float(tp+fp)
-      f_out.write(tp,'\t',fp,'\t',fn,'\t',sensitivity,'\t',1-specificity,'\t',th_st,'\t',th_end)    
-      return sensitivity, 1-specificity
+def compute_accuracy_min_pred_len(lst, min_pred_len):
 
-f_out.write("TP\tFP\tFN\tSensitivity\tSpecificity\tTheshold_Start\tThreshold_End")
+    preds_min_len = [ (j,k) for (j,k) in lst if j >= min_pred_len ] 
+    
+    tp = 0
+    fp = 0
+
+    for l in preds_min_len:
+        if l[1] == "TP":
+            tp +=1              
+        elif l[1] ==  "FP":
+            fp +=1
+    fn = total-tp
+
+    sensitivity = float(tp)/float(tp+fn)
+    specificity = float(tp)/float(tp+fp)
+
+    print("\t".join([str(x) for x in [min_pred_len, tp, fp, fn, sensitivity, specificity, 1-specificity] ]))
+    
+    return sensitivity, specificity
+
+
+print("\t".join(["min_pred_len", "TP", "FP", "FN", "Sensitivity", "Specificity", "1-Specificity"]))
 
 #iterate through the length list with a minimum gene length criteria ranging between 90bp and 480bp with a step of 30bp
-x = []
-y = []
-lst1 = [item[0] for item in sort_len_stat]
-lst2 = [item[1] for item in sort_len_stat]
-for i in range(90,481,30):
-     lst = [ (j,k) for (j,k) in zip(lst1,lst2) if j >= i ]
-     a,b = extract_range(lst,0,0,0,lst[0][0],lst[-1][0])
-     x.append(a)
-     y.append(b)
 
-y_n = y
-x_n = x
-zero = [0]
-one =[1]
+accuracy_stats = []
+step_size = 30
+min_range = 90
+max_range = 480
 
-#Add zero and one to the end of x and y axis for AUC analysis
-y = one+y+zero
-x = one+x+zero
+ranges = range(min_range, max_range+1, step_size)
+ranges.reverse()
+
+for min_pred_len in ranges:
+
+    (sensitivity, specificity) = compute_accuracy_min_pred_len(sorted_len_stats, min_pred_len)
+
+    accuracy_stats.append( { 'min_pred_len' : min_pred_len,
+                             'sensitivity' : sensitivity,
+                             'specificity' : specificity,
+                             '1-specificity' : 1 - specificity,
+                             } )
+
+# add bounds
 
 # This is the ROC curve
-plt.plot(y_n,x_n,marker ='+')
+x_n = [ x['1-specificity'] for x in accuracy_stats ]
+y_n = [ y['sensitivity'] for y in accuracy_stats ]
+
+
+
+plt.plot(x_n, y_n, marker ='+')
 
 # This is the AUC using built-in function
-roc_auc = auc(y, x,reorder = True)
 
-#Calculate using trapezoidal method
-auc = 0
-for i in range(len(y)-1):
-    auc += (y[i+1]-y[i]) * (x[i+1]+x[i])
-auc *= 0.5
-plt.title(algo.capitalize()+', AUC = %.4f'%roc_auc)
-plt.show()
+# add bounds
+x_n = [0] + x_n + [1]
+y_n = [0] + y_n + [1]
 
-f_pred.close()
-f_out.close()
+roc_auc = auc(x_n, y_n) #, reorder = True)
+
+print("#AUC = %.4f" % roc_auc) 
+
+plt.title(predictor_name + ', AUC = %.4f' % roc_auc)
+
+pp = PdfPages(predictor_name + ".roc.pdf")
+pp.savefig(plt.gcf())
+pp.close()
+sys.stderr.write("Wrote ROC plot figure: {}\n".format(predictor_name + ".roc.pdf"))
+
+sys.exit(0)

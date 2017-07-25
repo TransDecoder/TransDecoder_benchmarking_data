@@ -67,9 +67,14 @@ def main():
 
     data = json_struct['data']
 
+    study_title = data['STUDY']
+
     ref_orfs_file = data['REFERENCE']
 
     predictions_dict = data['PREDICTIONS']
+
+
+    roc_files = []
 
     for prediction in predictions_dict:
 
@@ -78,7 +83,16 @@ def main():
 
         run_analysis_pipe(prediction, ref_orfs_file, prediction_result_file, analysis_outputdir)
 
+        roc_files.append(prediction + ":{}/{}.cds.gff.scored.roc".format(analysis_outputdir, prediction))
 
+
+    # make summary ROC plots
+    cmd = str(UTILDIR + "/make_summary_accuracy_plots.py \"{}\" ".format(study_title) + " ".join(roc_files))
+
+    print(cmd)
+    subprocess.check_call(cmd, shell=True)
+    
+    
     sys.exit(0)
 
 

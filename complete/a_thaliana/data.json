@@ -1,5 +1,8 @@
 {
     "data" : {
+
+        "STUDY" : "a_thaliana complete",
+        
         "REFERENCE": "input_files/a_thaliana_ann.fna.CDS.gff",
 
         "PREDICTIONS": {

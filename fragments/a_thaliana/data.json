@@ -1,0 +1,29 @@
+{
+    "data" : {
+
+        "STUDY" : "a_thaliana fragments",
+        
+        "REFERENCE": "input_files/a_thaliana_ann-fragments.fasta.CDS.gff",
+
+        "PREDICTIONS": {
+        
+
+            "genemark": {
+                "result": "output_files/GeneMarkS-T/a_thaliana_ann-fragments.fasta.gff"
+            },
+            "transdecoder": {
+                "result": "output_files/Transdecoder/a_thaliana_ann-fragments.fasta.transdecoder.gff3"
+            },
+            "longorfs": {
+                "result": "output_files/Transdecoder/a_thaliana_ann-fragments.fasta.transdecoder_dir/longest_orfs.gff3"
+            },
+            "prodigal": {
+                "result": "output_files/Prodigal/prodigal-a_thaliana_ann-fragments.fasta.gff"
+            }
+        }
+    }
+}
+
+
+
+

@@ -1,0 +1,29 @@
+{
+    "data" : {
+
+        "STUDY" : "d_melanogaster complete",
+        
+        "REFERENCE": "input_files/dmel-all.fasta.CDS.gff",
+
+        "PREDICTIONS": {
+        
+
+            "genemark": {
+                "result": "output_files/GeneMarkS-T/dmel-all.fasta.gff"
+            },
+            "transdecoder": {
+                "result": "output_files/Transdecoder/dmel-all.fasta.transdecoder.gff3"
+            },
+            "longorfs": {
+                "result": "output_files/Transdecoder/dmel-all.fasta.transdecoder_dir/longest_orfs.gff3"
+            },
+            "prodigal": {
+                "result": "output_files/Prodigal/prodigal-dmel-all.fasta.gff"
+            }
+        }
+    }
+}
+
+
+
+

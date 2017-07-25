@@ -147,9 +147,10 @@ print("#AUC = %.4f" % roc_auc)
 
 plt.title(predictor_name + ', AUC = %.4f' % roc_auc)
 
-pp = PdfPages(predictor_name + ".roc.pdf")
+pdf_plot_filename = os.path.dirname(scored_preds_file) + "/" + predictor_name + ".roc.pdf"
+pp = PdfPages(pdf_plot_filename)
 pp.savefig(plt.gcf())
 pp.close()
-sys.stderr.write("Wrote ROC plot figure: {}\n".format(predictor_name + ".roc.pdf"))
+sys.stderr.write("Wrote ROC plot figure: {}\n".format(pdf_plot_filename))
 
 sys.exit(0)

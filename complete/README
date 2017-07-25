@@ -1,9 +1,0 @@
-#input files for s_pombe
-spombe-all.fasta - s_pombe transcripts with utr and without utr
-spombe-anti-sense.fasta - s_pombe complete transcripts on reverse strand 
-spombe-missing-utr.fasta - s_pombe transcripts with missing utr (3' or 5' or both)
-spombe-non_coding.fasta - s_pombe non-coding transcripts in Refseq reference
-spombe-sense.fasta - s_pombe complete transcripts on forward strand
-spombe-transcripts_with_utr.fasta - s_pombe complete transcripts
-spombe-anti-sense-all.fasta -  all s_pombe transcripts on reverse strand
-spombe-sense-all.fasta - all s_pombe transcripts on forward strand

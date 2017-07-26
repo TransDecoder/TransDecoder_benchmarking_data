@@ -68,36 +68,54 @@ Format:
 """
 
 
-total_truth_set = 0
+all_transcript_ids = set()
+truth_set_transcripts = set()
+transcripts_having_predictions = set()
+
 len_stat = []
 for pred in predictions:
     pred = pred.split('\t')
     pred_result_class = pred[0]
+
+    transcript_id = pred[1]
+    all_transcript_ids.add(transcript_id)
+    
     if pred_result_class != 'FN':
         pred_len = int(pred[9])
-        l = [pred_len, pred_result_class]
+        l = [pred_len, pred_result_class, transcript_id]
         len_stat.append(l)
 
+    if pred_result_class in ("TP", "FP"):
+        transcripts_having_predictions.add(transcript_id)
+
     if pred_result_class in ("TP", "FN"):
-        total_truth_set += 1
+        truth_set_transcripts.add(transcript_id)
 
 sorted_len_stats = sorted(len_stat)
 
+total_transcript_count = len(all_transcript_ids)
+total_truth_set_transcripts_count = len(truth_set_transcripts)
 
 #calculate sensitivity and specificity for a given list
 def compute_accuracy_min_pred_len(lst, min_pred_len):
 
-    preds_min_len = [ (j,k) for (j,k) in lst if j >= min_pred_len ] 
+    preds_min_len = [ (j,k,l) for (j,k,l) in lst if j >= min_pred_len ] 
     
     tp = 0
     fp = 0
 
+    transcript_ids_seen = set()
+
     for l in preds_min_len:
+        transcript_id = l[2]
+        transcript_ids_seen.add(transcript_id)
         if l[1] == "TP":
             tp +=1              
         elif l[1] ==  "FP":
             fp +=1
-    fn = total_truth_set - tp
+
+
+    fn = len(truth_set_transcripts - transcript_ids_seen)
     
     sensitivity = float(tp)/float(tp+fn)
     specificity = float(tp)/float(tp+fp)

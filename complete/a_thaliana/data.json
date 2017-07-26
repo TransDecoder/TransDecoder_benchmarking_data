@@ -12,13 +12,13 @@
                 "result": "output_files/GeneMarkS-T/a_thaliana_ann.fna.gff"
             },
             "transdecoder": {
-                "result": "output_files/Transdecoder/a_thaliana_ann.fna.transdecoder.gff3"
+                "result": "output_files/TransDecoder/a_thaliana_ann.fna.transdecoder.gff3"
             },
             "longorfs": {
-                "result": "output_files/Transdecoder/a_thaliana_ann.fna.transdecoder_dir/longest_orfs.gff3"
+                "result": "output_files/TransDecoder/a_thaliana_ann.fna.transdecoder_dir/longest_orfs.gff3"
             },
             "prodigal": {
-                "result": "output_files/Prodigal/prodigal-a_thaliana_ann.fna.gff"
+                "result": "output_files/Prodigal/prodigal.out"
             }
         }
     }

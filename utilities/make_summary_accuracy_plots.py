@@ -90,7 +90,8 @@ def parse_roc_file(roc_file):
     lines = lines[1:]
 
     auc_text = lines.pop()
-    auc_val = auc_text.split(" ")[2]
+    auc_text = auc_text.rstrip()
+    auc_val = float(auc_text.split(" ")[2])
 
     x_vals = []
     y_vals = []
@@ -98,8 +99,8 @@ def parse_roc_file(roc_file):
         line = line.rstrip()
         vals = line.split("\t")
 
-        one_minus_specificity = vals[6]
-        sensitivity = vals[4]
+        one_minus_specificity = float(vals[6])
+        sensitivity = float(vals[4])
 
         x_vals.append(one_minus_specificity)
         y_vals.append(sensitivity)

@@ -68,6 +68,7 @@ Format:
 """
 
 
+total_truth_set = 0
 len_stat = []
 for pred in predictions:
     pred = pred.split('\t')
@@ -77,8 +78,11 @@ for pred in predictions:
         l = [pred_len, pred_result_class]
         len_stat.append(l)
 
+    if pred_result_class in ("TP", "FN"):
+        total_truth_set += 1
+
 sorted_len_stats = sorted(len_stat)
-total = len(predictions)
+
 
 #calculate sensitivity and specificity for a given list
 def compute_accuracy_min_pred_len(lst, min_pred_len):
@@ -93,8 +97,8 @@ def compute_accuracy_min_pred_len(lst, min_pred_len):
             tp +=1              
         elif l[1] ==  "FP":
             fp +=1
-    fn = total-tp
-
+    fn = total_truth_set - tp
+    
     sensitivity = float(tp)/float(tp+fn)
     specificity = float(tp)/float(tp+fp)
 

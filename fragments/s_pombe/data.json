@@ -12,13 +12,13 @@
                 "result": "output_files/GeneMarkS-T/spombe-all-fragments.fasta.gff"
             },
             "transdecoder": {
-                "result": "output_files/Transdecoder/spombe-all-fragments.fasta.transdecoder.gff3"
+                "result": "output_files/TransDecoder/spombe-all-fragments.fasta.transdecoder.gff3"
             },
             "longorfs": {
-                "result": "output_files/Transdecoder/spombe-all-fragments.fasta.transdecoder_dir/longest_orfs.gff3"
+                "result": "output_files/TransDecoder/spombe-all-fragments.fasta.transdecoder_dir/longest_orfs.gff3"
             },
             "prodigal": {
-                "result": "output_files/Prodigal/prodigal-spombe-all-fragments.fasta.gff"
+                "result": "output_files/Prodigal/prodigal.out"
             }
         }
     }

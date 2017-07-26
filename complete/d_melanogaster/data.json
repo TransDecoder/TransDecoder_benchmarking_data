@@ -19,6 +19,9 @@
             },
             "prodigal": {
                 "result": "output_files/Prodigal/prodigal.out"
+            },
+            "prodigal-SS": {
+                "result": "output_files/Prodigal/prodigal.out.+only"
             }
         }
     }

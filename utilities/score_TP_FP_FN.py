@@ -53,11 +53,13 @@ for line in truth_lines:
 
 
 #store all predictions
-correctly_predicted_transcripts = set()
+transcripts_with_predictions = set()
 for pred in prediction:
     
     line = pred.strip().split('\t')
     transcript_id = line[0].split('|')[0]
+
+    transcripts_with_predictions.add(transcript_id)
     
     ref_st = -1
     ref_end = -1
@@ -97,18 +99,16 @@ for pred in prediction:
         abs(ref_st - pred_st) < 3 ) :
          
         three_five_match.append("\t".join(['TP', result, '3,5-prime']))
-        correctly_predicted_transcripts.add(transcript_id)
 
     elif ref_orient == pred_orient and abs(ref_end - pred_end) < 3:
         three_match.append("\t".join(['TP', result, '3-prime']))
-        correctly_predicted_transcripts.add(transcript_id)
         
     else:
         false_pos.append("\t".join(['FP', result, '.']))
 
 
 #store missing predictions
-no_res = list(set(truth_predictions.keys()) - correctly_predicted_transcripts)
+no_res = list(set(truth_predictions.keys()) - transcripts_with_predictions)
 for transcript_id in no_res:
     truth_struct = truth_predictions[transcript_id]
 

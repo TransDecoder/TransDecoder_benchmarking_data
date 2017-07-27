@@ -11,15 +11,36 @@
             "genemark": {
                 "result": "output_files/GeneMarkS-T/a_thaliana_ann-fragments.fasta.gff"
             },
+
+            "genemark-SS": {
+                "result": "output_files/GeneMarkS-T-SS/a_thaliana_ann-fragments.fasta.gff"
+            },
+
+
             "transdecoder": {
                 "result": "output_files/TransDecoder/a_thaliana_ann-fragments.fasta.transdecoder.gff3"
             },
             "longorfs": {
                 "result": "output_files/TransDecoder/a_thaliana_ann-fragments.fasta.transdecoder_dir/longest_orfs.gff3"
             },
+
+
+            "transdecoder-SS": {
+                "result": "output_files/TransDecoder-SS/a_thaliana_ann-fragments.fasta.transdecoder.gff3"
+            },
+            "longorfs-SS": {
+                "result": "output_files/TransDecoder-SS/a_thaliana_ann-fragments.fasta.transdecoder_dir/longest_orfs.gff3"
+            },
+
+            
             "prodigal": {
                 "result": "output_files/Prodigal/prodigal.out"
+            },
+
+            "prodigal-SS": {
+                "result": "output_files/Prodigal/prodigal.out.+only"
             }
+            
         }
     }
 }

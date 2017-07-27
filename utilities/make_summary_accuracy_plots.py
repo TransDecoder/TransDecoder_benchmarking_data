@@ -32,23 +32,36 @@ def main():
     pred_types = []
     auc_vals = []
 
-    base_colors = ('b', 'g', 'r', 'c', 'm', 'y', 'k')
+    base_colors = ('r', 'g', 'b', 'c', 'm', 'y', 'k')
     base_markers = ('o', '2', '8', '*', 's', 'D', '+')
     color_and_marker_index = -1
     pred_type_to_color_and_marker = {}
     
     
+
+    pred_type_file_tuples = []
         
     for pred_type_file_combo in pred_type_file_combos:
         (pred_type, roc_file) = pred_type_file_combo.split(":")
 
+        pred_type_file_tuples.append( (pred_type, roc_file) )
+
+
+    pred_type_file_tuples.sort()
+
+    for pred_type, roc_file in pred_type_file_tuples:
+
+        if re.search("longorf", pred_type): continue
+
+        sys.stderr.write("plotting: {}, {}\n".format(pred_type, roc_file))
+        
         base_pred_type = pred_type
-        line_style = "--"
+        line_style = ":"
         
         if re.search("-SS$", base_pred_type):
             # strand-specific mode
             base_pred_type = re.sub("-SS$", "", pred_type)
-            line_style = ":"
+            line_style = "--"
 
         line_color = None
         line_marker = None

@@ -33,10 +33,10 @@ path = os.getcwd()
 
 f_pred = open(scored_preds_file)
 
-predictions = f_pred.readlines()
+prediction_text_lines = f_pred.readlines()
 
 # remove header
-predictions = predictions[1:] 
+prediction_text_lines = prediction_text_lines[1:] 
 
 """
 Format:
@@ -68,54 +68,71 @@ Format:
 """
 
 
-all_transcript_ids = set()
+
 truth_set_transcripts = set()
-transcripts_having_predictions = set()
 
-len_stat = []
-for pred in predictions:
+all_predictions = []
+
+for pred in prediction_text_lines:
+    pred = pred.rstrip()
     pred = pred.split('\t')
+
     pred_result_class = pred[0]
-
     transcript_id = pred[1]
-    all_transcript_ids.add(transcript_id)
-    
-    if pred_result_class != 'FN':
-        pred_len = int(pred[9])
-        l = [pred_len, pred_result_class, transcript_id]
-        len_stat.append(l)
+    pred_start = pred[6]
+    pred_end = pred[7]
+    pred_orient = pred[8]
+    pred_length = pred[9]
+    match_type = pred[10]
 
-    if pred_result_class in ("TP", "FP"):
-        transcripts_having_predictions.add(transcript_id)
-
+    # capture truth set
     if pred_result_class in ("TP", "FN"):
         truth_set_transcripts.add(transcript_id)
 
-sorted_len_stats = sorted(len_stat)
 
-total_transcript_count = len(all_transcript_ids)
-total_truth_set_transcripts_count = len(truth_set_transcripts)
+    # capture all predictions
+    if pred_result_class != 'FN':
+        pred_name = ":".join([transcript_id, pred_start, pred_end, pred_orient])
+
+        pred_struct = {
+            'pred_name' : pred_name,
+            'pred_length' : int(pred_length),
+            'match_type' : match_type,
+            'transcript_id' : transcript_id,
+            'result_class' : pred_result_class
+            } 
+
+        all_predictions.append(pred_struct)
+
+
+predictions_sorted_by_length = sorted(all_predictions, key=lambda pred: pred['pred_length'])
+
 
 #calculate sensitivity and specificity for a given list
 def compute_accuracy_min_pred_len(lst, min_pred_len):
 
-    preds_min_len = [ (j,k,l) for (j,k,l) in lst if j >= min_pred_len ] 
+    preds_min_len = [ pred for pred in lst if pred['pred_length'] >= min_pred_len ] 
     
     tp = 0
     fp = 0
 
-    transcript_ids_seen = set()
+    transcript_ids_3prime_match = set()
 
-    for l in preds_min_len:
-        transcript_id = l[2]
-        transcript_ids_seen.add(transcript_id)
-        if l[1] == "TP":
+    for pred in preds_min_len:
+        transcript_id = pred['transcript_id']
+        match_type = pred['match_type']
+        if re.search("3", match_type):
+            transcript_ids_3prime_match.add(transcript_id)
+            
+        result_class = pred['result_class']
+        
+        if result_class == "TP":
             tp +=1              
-        elif l[1] ==  "FP":
+        elif result_class ==  "FP":
             fp +=1
 
 
-    fn = len(truth_set_transcripts - transcript_ids_seen)
+    fn = len(truth_set_transcripts - transcript_ids_3prime_match)
     
     sensitivity = float(tp)/float(tp+fn)
     specificity = float(tp)/float(tp+fp)
@@ -131,15 +148,15 @@ print("\t".join(["min_pred_len", "TP", "FP", "FN", "Sensitivity", "Specificity",
 
 accuracy_stats = []
 step_size = 30
-min_range = 90
-max_range = 480
+min_range = 300
+max_range = 750
 
 ranges = range(min_range, max_range+1, step_size)
 ranges.reverse()
 
 for min_pred_len in ranges:
 
-    (sensitivity, specificity) = compute_accuracy_min_pred_len(sorted_len_stats, min_pred_len)
+    (sensitivity, specificity) = compute_accuracy_min_pred_len(predictions_sorted_by_length, min_pred_len)
 
     accuracy_stats.append( { 'min_pred_len' : min_pred_len,
                              'sensitivity' : sensitivity,

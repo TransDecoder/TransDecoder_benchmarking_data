@@ -9,6 +9,14 @@ from sklearn.metrics import auc
 import argparse
 
 
+## Defining the range of prediction lengths to consider
+MIN_LENGTH_RANGE = 300   # any orfs, truth or predicted, will not be considered if smaller than this amount.
+max_range = 750
+step_size = 30
+
+
+
+
 #add options to inputs
 parser = argparse.ArgumentParser(formatter_class=argparse.RawTextHelpFormatter,
                                  description="plot ROC ")
@@ -77,6 +85,11 @@ for pred in prediction_text_lines:
     pred = pred.rstrip()
     pred = pred.split('\t')
 
+    ref_len = pred[5]
+    if ref_len != '.' and int(ref_len) < MIN_LENGTH_RANGE:
+        continue
+
+    
     pred_result_class = pred[0]
     transcript_id = pred[1]
     pred_start = pred[6]
@@ -84,6 +97,10 @@ for pred in prediction_text_lines:
     pred_orient = pred[8]
     pred_length = pred[9]
     match_type = pred[10]
+
+    if pred_length != "." and int(pred_length) < MIN_LENGTH_RANGE:
+        continue
+    
 
     # capture truth set
     if pred_result_class in ("TP", "FN"):
@@ -147,11 +164,8 @@ print("\t".join(["min_pred_len", "TP", "FP", "FN", "Sensitivity", "Specificity",
 #iterate through the length list with a minimum gene length criteria ranging between 90bp and 480bp with a step of 30bp
 
 accuracy_stats = []
-step_size = 30
-min_range = 300
-max_range = 750
 
-ranges = range(min_range, max_range+1, step_size)
+ranges = range(MIN_LENGTH_RANGE, max_range+1, step_size)
 ranges.reverse()
 
 for min_pred_len in ranges:

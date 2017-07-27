@@ -23,6 +23,15 @@
                 "result": "output_files/TransDecoder/mmus-all.fasta.transdecoder_dir/longest_orfs.gff3"
             },
 
+
+            "transdecoder-SS": {
+                "result": "output_files/TransDecoder-SS/mmus-all.fasta.transdecoder.gff3"
+            },
+            "longorfs-SS": {
+                "result": "output_files/TransDecoder-SS/mmus-all.fasta.transdecoder_dir/longest_orfs.gff3"
+            },
+
+
             
             "prodigal": {
                 "result": "output_files/Prodigal/prodigal.out"

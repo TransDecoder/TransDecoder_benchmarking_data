@@ -4,6 +4,7 @@ import os, sys
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 import numpy as np
+import re
 
 usage = "\n\n\nusage: {} plot_title pred_type_A:/path/to/pred_type_A.cds.gff.scored.roc ...\n\n\n".format(sys.argv[0])
 
@@ -26,33 +27,68 @@ def main():
     plt.xlabel("1-Specificity")
     plt.ylabel("Sensitivity")
     
-    predtype_file_combos = sys.argv[2:]
+    pred_type_file_combos = sys.argv[2:]
 
     pred_types = []
     auc_vals = []
-        
-    for predtype_file_combo in predtype_file_combos:
-        (pred_type, roc_file) = predtype_file_combo.split(":")
 
+    base_colors = ('b', 'g', 'r', 'c', 'm', 'y', 'k')
+    base_markers = ('o', '2', '8', '*', 's', 'D', '+')
+    color_and_marker_index = -1
+    pred_type_to_color_and_marker = {}
+    
+    
+        
+    for pred_type_file_combo in pred_type_file_combos:
+        (pred_type, roc_file) = pred_type_file_combo.split(":")
+
+        base_pred_type = pred_type
+        line_style = "--"
+        
+        if re.search("-SS$", base_pred_type):
+            # strand-specific mode
+            base_pred_type = re.sub("-SS$", "", pred_type)
+            line_style = ":"
+
+        line_color = None
+        line_marker = None
+
+        if base_pred_type in pred_type_to_color_and_marker:
+            (line_color, line_marker) = pred_type_to_color_and_marker[base_pred_type]
+        else:
+            color_and_marker_index += 1
+            (line_color, line_marker) = \
+                         pred_type_to_color_and_marker[base_pred_type] = \
+                         (base_colors[color_and_marker_index], base_markers[color_and_marker_index])
+        
         (x_vals, y_vals, auc) = parse_roc_file(roc_file) 
 
-        plt.plot(x_vals, y_vals, marker = 'o', label=pred_type)
+        plt.plot(x_vals, y_vals, marker=line_marker, ls=line_style, c=line_color, label=pred_type)
 
-        pred_types.append(pred_type)
-        auc_vals.append(auc)
+        auc_vals.append( (auc, pred_type) )
 
     plt.legend(loc="lower right")
 
     pp.savefig(plt.gcf())
 
-
+    auc_vals = sorted(auc_vals)
+    auc_vals.reverse()
+    
     ## auc barplot summary
     plt.figure()
+    pred_types = [x[1] for x in auc_vals]
     x_pos = np.arange(len(pred_types))
-    plt.bar(x_pos, auc_vals, align='center', alpha=0.5)
+    plt.bar(x_pos, [x[0] for x in auc_vals], align='center', alpha=0.5)
     plt.xticks(x_pos, pred_types)
+    locs, labels = plt.xticks()
+    plt.setp(labels, rotation=45)
     plt.ylabel("prediction type")
     plt.title(title + " : AUC")
+
+    # add data labels
+    for i, x in enumerate(x_pos):
+        auc_val = auc_vals[i][0]
+        plt.text(x, auc_val, "%.3f" % auc_val)
 
     pp.savefig(plt.gcf())
     

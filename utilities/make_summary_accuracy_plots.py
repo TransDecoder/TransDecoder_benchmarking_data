@@ -53,7 +53,7 @@ def main():
 
     for pred_type, roc_file in pred_type_file_tuples:
 
-        if re.search("longorf", pred_type): continue
+        #if re.search("longorf", pred_type): continue
 
         sys.stderr.write("plotting: {}, {}\n".format(pred_type, roc_file))
         

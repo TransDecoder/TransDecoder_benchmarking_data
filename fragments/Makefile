@@ -1,6 +1,6 @@
 
 
-ORGS=a_thaliana d_melanogaster m_musculus s_pombe
+ORGS=a_thaliana d_melanogaster m_musculus s_pombe Marks_a_thaliana
 
 analyze:
 	@for i in $(ORGS); do \

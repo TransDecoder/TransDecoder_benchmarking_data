@@ -32,8 +32,10 @@ def main():
     pred_types = []
     auc_vals = []
 
-    base_colors = ('r', 'g', 'b', 'c', 'm', 'y', 'k')
-    base_markers = ('o', '2', '8', '*', 's', 'D', '+')
+    base_colors = ('r', 'g', 'b', 'c', 'm', 'y', 'k',
+                   'aquamarine', 'brown', 'cyan', 'fuchsia', 'gold', 'indigo')
+    base_markers = ('o', '2', '8', '*', 's', 'D', '+',
+                    'h', 'p', '1', '2', '3', 'd')
     color_and_marker_index = -1
     pred_type_to_color_and_marker = {}
     

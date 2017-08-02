@@ -52,6 +52,7 @@ for line in truth_lines:
     truth_predictions[transcript_id] = truth_orf
 
 
+MAX_WARN=20
 #store all predictions
 transcripts_with_predictions = set()
 for pred in prediction:
@@ -73,8 +74,11 @@ for pred in prediction:
         ref_orient = truth_struct['ref_orient']
         ref_length = truth_struct['ref_length']
     else:
-        sys.stderr.write("error, missing {} in truth set\n".format(transcript_id))
-
+        if num_warnings < MAX_WARN:
+            sys.stderr.write("warning, missing {} in truth set (ok if thats expected)\n".format(transcript_id))
+        elif num_warnings == MAX_WARN:
+            sys.stderr.write("-disabling further warning messages\n")
+    
     pred_st = -1
     pred_end = -1
 

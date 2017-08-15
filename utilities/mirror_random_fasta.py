@@ -30,7 +30,6 @@ def main():
 
     # get last one
     mirror_seq(acc, seq)
-        
 
     sys.exit(0)
 
@@ -38,7 +37,7 @@ def mirror_seq(acc, seq):
 
     seq = seq.upper()
 
-    print ">{}\n".format(acc, seq)
+    print ">{}\n{}".format(acc, seq)
     
     seqlen = len(seq)
     charcounter = collections.defaultdict(int)
@@ -55,7 +54,7 @@ def mirror_seq(acc, seq):
     randseq = ''.join(np.random.choice(chars, p=probs) for _ in range(seqlen))
 
 
-    print ">random{}\n{}".format(acc, randseq)
+    print ">random{}-\n{}".format(acc, randseq)
 
     
 

@@ -1,0 +1,47 @@
+{
+    "data" : {
+
+        "STUDY" : "d_melanogaster complete",
+        
+        "REFERENCE": "input_files/dmel-all.fasta.CDS.gff",
+
+        "PREDICTIONS": {
+        
+
+            "genemark": {
+                "result": "output_fileswRand/GeneMarkS-T/dmel-all.fasta.wRand.gff"
+            },
+            "genemark-SS": {
+                "result": "output_fileswRand/GeneMarkS-T-SS/dmel-all.fasta.wRand.gff"
+            },
+
+
+            "transdecoder": {
+                "result": "output_fileswRand/TransDecoder/dmel-all.fasta.wRand.transdecoder.gff3"
+            },
+            "longorfs": {
+                "result": "output_fileswRand/TransDecoder/dmel-all.fasta.wRand.transdecoder_dir/longest_orfs.gff3"
+            },
+
+            
+            "transdecoder-SS": {
+                "result": "output_fileswRand/TransDecoder-SS/dmel-all.fasta.wRand.transdecoder.gff3"
+            },
+            "longorfs-SS": {
+                "result": "output_fileswRand/TransDecoder-SS/dmel-all.fasta.wRand.transdecoder_dir/longest_orfs.gff3"
+            },
+
+            
+            "prodigal": {
+                "result": "output_fileswRand/Prodigal/prodigal.out"
+            },
+            "prodigal-SS": {
+                "result": "output_fileswRand/Prodigal/prodigal.out.+only"
+            }
+        }
+    }
+}
+
+
+
+

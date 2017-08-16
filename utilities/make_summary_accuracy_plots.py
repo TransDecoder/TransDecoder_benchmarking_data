@@ -6,7 +6,7 @@ from matplotlib.backends.backend_pdf import PdfPages
 import numpy as np
 import re
 
-usage = "\n\n\nusage: {} plot_title pred_type_A:/path/to/pred_type_A.cds.gff.scored.roc ...\n\n\n".format(sys.argv[0])
+usage = "\n\n\nusage: {} output_pdf_filename plot_title pred_type_A:/path/to/pred_type_A.cds.gff.scored.roc ...\n\n\n".format(sys.argv[0])
 
 if len(sys.argv) < 2:
     sys.stderr.write(usage)
@@ -17,17 +17,18 @@ if len(sys.argv) < 2:
 def main():
 
 
-    pdf_plot_filename = "summary_ROC.pdf"
+    pdf_plot_filename = sys.argv[1]
     pp =  PdfPages(pdf_plot_filename)
 
     ## roc plot summary
     plt.figure()
-    title = sys.argv[1]
+    
+    title = sys.argv[2]
     plt.title(title + " : ROC")
     plt.xlabel("1-Specificity")
     plt.ylabel("Sensitivity")
     
-    pred_type_file_combos = sys.argv[2:]
+    pred_type_file_combos = sys.argv[3:]
 
     pred_types = []
     auc_vals = []

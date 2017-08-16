@@ -1,0 +1,45 @@
+{
+    "data" : {
+
+        "STUDY" : "mouse complete",
+        
+        "REFERENCE": "input_files/mmus-all.fasta.CDS.gff",
+
+        "PREDICTIONS": {
+        
+
+            
+            "transdecoder": {
+                "result": "output_fileswRand/TransDecoder/mmus-all.fasta.wRand.transdecoder.gff3"
+            },
+            "longorfs": {
+                "result": "output_fileswRand/TransDecoder/mmus-all.fasta.wRand.transdecoder_dir/longest_orfs.gff3"
+            },
+
+
+            "transdecoder-SS": {
+                "result": "output_fileswRand/TransDecoder-SS/mmus-all.fasta.wRand.transdecoder.gff3"
+            },
+
+            "transdecoder-noRS": {
+                "result": "output_fileswRand/TransDecoder-noRS/mmus-all.fasta.wRand.transdecoder.gff3"
+            },
+
+
+            "transdecoder-noRS-AGO": {
+                "result": "output_fileswRand/TransDecoder-noRS-AGO/mmus-all.fasta.wRand.transdecoder.gff3"
+            },
+
+            
+            "transdecoder-noRS-AGO-noLOA": {
+                "result": "output_fileswRand/TransDecoder-noRS-AGO-noLOA/mmus-all.fasta.wRand.transdecoder.gff3"
+            }
+            
+            
+        }
+    }
+}
+
+
+
+

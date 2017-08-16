@@ -85,8 +85,10 @@ for pred in prediction_text_lines:
     pred = pred.rstrip()
     pred = pred.split('\t')
 
-    ref_len = pred[5]
-    if ref_len != '.' and int(ref_len) < MIN_LENGTH_RANGE:
+    ref_len = int(pred[5])
+    if ref_len > 0 and int(ref_len) < MIN_LENGTH_RANGE:
+        # ignoring reference entries that are below the minimum prediction length.
+        #sys.stderr.write("skipping short ref line: {}\n".format(pred))
         continue
 
     
@@ -99,6 +101,8 @@ for pred in prediction_text_lines:
     match_type = pred[10]
 
     if pred_length != "." and int(pred_length) < MIN_LENGTH_RANGE:
+        # ignoring all short predictions below min length
+        #sys.stderr.write("skipping short pred line: {}\n".format(pred))
         continue
     
 
@@ -124,7 +128,6 @@ for pred in prediction_text_lines:
 
 predictions_sorted_by_length = sorted(all_predictions, key=lambda pred: pred['pred_length'])
 
-
 #calculate sensitivity and specificity for a given list
 def compute_accuracy_min_pred_len(lst, min_pred_len):
 
@@ -147,7 +150,10 @@ def compute_accuracy_min_pred_len(lst, min_pred_len):
             tp +=1              
         elif result_class ==  "FP":
             fp +=1
-
+        else:
+            raise RuntimeError("prediction has unrecognized result_class: {}".format(result_class))
+        
+        #print("\t".join([`min_pred_len`, result_class, transcript_id, match_type]))
 
     fn = len(truth_set_transcripts - transcript_ids_3prime_match)
     
@@ -155,6 +161,7 @@ def compute_accuracy_min_pred_len(lst, min_pred_len):
     specificity = float(tp)/float(tp+fp)
 
     print("\t".join([str(x) for x in [min_pred_len, tp, fp, fn, sensitivity, specificity, 1-specificity] ]))
+
     
     return sensitivity, specificity
 
@@ -177,6 +184,7 @@ for min_pred_len in ranges:
                              'specificity' : specificity,
                              '1-specificity' : 1 - specificity,
                              } )
+
 
 # add bounds
 

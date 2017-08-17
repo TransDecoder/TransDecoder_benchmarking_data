@@ -1,0 +1,44 @@
+{
+    "data" : {
+
+        "STUDY" : "d_melanogaster complete",
+        
+        "REFERENCE": "input_files/dmel-all.fasta.CDS.gff",
+
+        "PREDICTIONS": {
+        
+
+            "transdecoder": {
+                "result": "output_fileswRand/TransDecoder/dmel-all.fasta.wRand.transdecoder.gff3"
+            },
+            "longorfs": {
+                "result": "output_fileswRand/TransDecoder/dmel-all.fasta.wRand.transdecoder_dir/longest_orfs.gff3"
+            },
+
+            
+            "transdecoder-SS": {
+                "result": "output_fileswRand/TransDecoder-SS/dmel-all.fasta.wRand.transdecoder.gff3"
+            },
+
+
+            "transdecoder-noRS": {
+                "result": "output_fileswRand/TransDecoder-noRS/dmel-all.fasta.wRand.transdecoder.gff3"
+            },
+
+            "transdecoder-noRS-AGO": {
+                "result": "output_fileswRand/TransDecoder-noRS-AGO/dmel-all.fasta.wRand.transdecoder.gff3"
+            },
+
+            "transdecoder-noRS-AGO-noLOA": {
+                "result": "output_fileswRand/TransDecoder-noRS-AGO-noLOA/dmel-all.fasta.wRand.transdecoder.gff3"
+            }
+
+
+            
+        }
+    }
+}
+
+
+
+

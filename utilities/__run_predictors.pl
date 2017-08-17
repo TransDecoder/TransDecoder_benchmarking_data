@@ -10,11 +10,16 @@ my @ref_files = qw (fragments/m_musculus/input_files/mmus-all-fragments.fasta
                     fragments/d_melanogaster/input_files/dmel-all-fragments.fasta
                     fragments/a_thaliana/input_files/a_thaliana_ann-fragments.fasta
                     fragments/s_pombe/input_files/spombe-all-fragments.fasta
+
                     complete/m_musculus/input_files/mmus-all.fasta
                     complete/d_melanogaster/input_files/dmel-all.fasta
                     complete/a_thaliana/input_files/a_thaliana_ann.fna
-                    complete/s_pombe/input_files/spombe-all.fasta,
-                    ./fragments/Marks_a_thaliana/input_files/a_thaliana.trimmed_ann.fna
+                    complete/s_pombe/input_files/spombe-all.fasta
+
+                    complete/m_musculus/input_files/mmus-all.fasta.wRand
+                    complete/d_melanogaster/input_files/dmel-all.fasta.wRand
+                    complete/a_thaliana/input_files/a_thaliana_ann.fna.wRand
+                    complete/s_pombe/input_files/spombe-all.fasta.wRand
  
 );
 
@@ -38,10 +43,15 @@ sub process_cmd {
 sub get_genemark_cmd { 
     my ($fasta_file, $SS_flag) = @_;
 
+    my $wRand = "";
+    if ($fasta_file =~ /wRand$/) {
+        $wRand = "wRand";
+    }
+    
     my @pts = split(/\//, $fasta_file);
     pop @pts;
     pop @pts;
-    push (@pts, "output_files", "GeneMarkS-T");
+    push (@pts, "output_files$wRand", "GeneMarkS-T");
 
     my $outdir = join("/", @pts);
     
@@ -52,8 +62,8 @@ sub get_genemark_cmd {
         $gmst_SS_param = " --strand direct ";
     }
     
-    if (! -d) {
-        &process_cmd("mkdir $outdir");
+    if (! -d $outdir) {
+        &process_cmd("mkdir -p $outdir");
     }
     
     
@@ -64,30 +74,40 @@ sub get_genemark_cmd {
 
 sub get_prodigal_cmd {
     my ($fasta_file) = @_;
+
+    my $wRand = "";
+    if ($fasta_file =~ /wRand$/) {
+        $wRand = "wRand";
+    }
     
     my @pts = split(/\//, $fasta_file);
     pop @pts;
     pop @pts;
-    push (@pts, "output_files", "Prodigal");
+    push (@pts, "output_files$wRand", "Prodigal");
 
     my $outdir = join("/", @pts);
 
     if (! -d $outdir) {
-        &process_cmd("mkdir $outdir");
+        &process_cmd("mkdir -p $outdir");
     }
     
-    return("cd $outdir && /seq/RNASEQ/TOOLS/prodigal/Prodigal-2.6.3/prodigal -f gff -o prodigal.out < $fasta_file");
-
+    return("cd $outdir && /seq/RNASEQ/TOOLS/prodigal/Prodigal-2.6.3/prodigal -f gff -o prodigal.out -g 1 -n < $fasta_file");
+    
 }
 
 sub get_transdecoder_cmd {
     my ($fasta_file, $SS_flag) = @_;
+
+    my $wRand = "";
+    if ($fasta_file =~ /wRand$/) {
+        $wRand = "wRand";
+    }
     
     my @pts = split(/\//, $fasta_file);
     pop @pts;
     pop @pts;
-    push (@pts, "output_files", "TransDecoder");
-
+    push (@pts, "output_files$wRand", "TransDecoder");
+    
     my $outdir = join("/", @pts);
 
     my $transdecoder_SS_param = "";
@@ -97,7 +117,7 @@ sub get_transdecoder_cmd {
     }
     
     if (! -d $outdir) {
-        &process_cmd("mkdir $outdir");
+        &process_cmd("mkdir -p $outdir");
     }
     
     return("cd $outdir && /home/unix/bhaas/GITHUB/TransDecoder/TransDecoder.LongOrfs -t $fasta_file $transdecoder_SS_param && /home/unix/bhaas/GITHUB/TransDecoder/TransDecoder.Predict -t $fasta_file");

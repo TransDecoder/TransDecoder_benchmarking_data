@@ -1,0 +1,42 @@
+{
+    "data" : {
+
+        "STUDY" : "s_pombe complete",
+        
+        "REFERENCE": "input_files/spombe-all.fasta.CDS.gff",
+
+        "PREDICTIONS": {
+        
+            "transdecoder": {
+                "result": "output_fileswRand/TransDecoder/spombe-all.fasta.wRand.transdecoder.gff3"
+            },
+            "longorfs": {
+                "result": "output_fileswRand/TransDecoder/spombe-all.fasta.wRand.transdecoder_dir/longest_orfs.gff3"
+            },
+
+            "transdecoder-SS": {
+                "result": "output_fileswRand/TransDecoder-SS/spombe-all.fasta.wRand.transdecoder.gff3"
+            },
+
+
+            "transdecoder-noRS": {
+                "result": "output_fileswRand/TransDecoder-noRS/spombe-all.fasta.wRand.transdecoder.gff3"
+            },
+
+            "transdecoder-noRS-AGO": {
+                "result": "output_fileswRand/TransDecoder-noRS-AGO/spombe-all.fasta.wRand.transdecoder.gff3"
+            },
+
+
+            "transdecoder-noRS-AGO-noLOA": {
+                "result": "output_fileswRand/TransDecoder-noRS-AGO-noLOA/spombe-all.fasta.wRand.transdecoder.gff3"
+            }
+
+
+        }
+    }
+}
+
+
+
+

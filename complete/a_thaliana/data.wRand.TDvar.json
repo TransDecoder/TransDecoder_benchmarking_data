@@ -1,0 +1,40 @@
+{
+    "data" : {
+
+        "STUDY" : "a_thaliana complete",
+        
+        "REFERENCE": "input_files/a_thaliana_ann.fna.CDS.gff",
+
+        "PREDICTIONS": {
+
+            "transdecoder": {
+                "result": "output_fileswRand/TransDecoder/a_thaliana_ann.fna.wRand.transdecoder.gff3"
+            },
+            "longorfs": {
+                "result": "output_fileswRand/TransDecoder/a_thaliana_ann.fna.wRand.transdecoder_dir/longest_orfs.gff3"
+            },
+
+            "transdecoder-SS": {
+                "result": "output_fileswRand/TransDecoder-SS/a_thaliana_ann.fna.wRand.transdecoder.gff3"
+            },
+
+            "transdecoder-noRS" : {
+                "result" : "output_fileswRand/TransDecoder-noRS/a_thaliana_ann.fna.wRand.transdecoder.gff3"
+            },
+
+            "TransDecoder-noRS-AGO" : {
+                "result" : "output_fileswRand/TransDecoder-noRS-AGO/a_thaliana_ann.fna.wRand.transdecoder.gff3"
+            },
+
+            "TransDecoder-noRS-AGO-noLOA" : {
+                "result" : "output_fileswRand/TransDecoder-noRS-AGO-noLOA/a_thaliana_ann.fna.wRand.transdecoder.gff3"
+            }
+                        
+
+        }
+    }
+}
+
+
+
+

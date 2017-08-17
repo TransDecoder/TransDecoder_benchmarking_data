@@ -1,6 +1,6 @@
 ##gff-version 2
 ##source-version GeneMark.hmm_PROKARYOTIC 3.20
-##date: Tue Jul 25 20:18:29 2017
+##date: Wed Aug 16 11:24:33 2017
 # Sequence file name: /ahg/regev/users/bhaas/seq/bhaas/GIT/TransDecoder_benchmarking_data/utilities/../complete/s_pombe/input_files/spombe-all.fasta
 # Model file name: GeneMark_hmm.mod
 # RBS: true

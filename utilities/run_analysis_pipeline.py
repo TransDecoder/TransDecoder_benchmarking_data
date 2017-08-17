@@ -4,13 +4,14 @@ import os, sys, re
 import json
 import subprocess
 
-usage = "\n\nusage: {} data.json\n\n".format(sys.argv[0])
+usage = "\n\nusage: {} data.json output_dir\n\n".format(sys.argv[0])
 
-if len(sys.argv) < 2:
+if len(sys.argv) < 3:
     sys.stderr.write(usage)
     sys.exit(1)
 
 data_json_file = sys.argv[1]
+output_dir = sys.argv[2]
 
 UTILDIR = os.path.dirname(__file__)
 
@@ -55,7 +56,7 @@ def run_analysis_pipe(prediction_type, ref_orfs_file, predictions_result_file, a
 
 def main():
 
-    analysis_outputdir = os.path.abspath("analysis_dir")
+    analysis_outputdir = os.path.abspath(output_dir)
     if not os.path.exists(analysis_outputdir):
         os.makedirs(analysis_outputdir)
 
@@ -89,8 +90,8 @@ def main():
 
 
     # make summary ROC plots
-    cmd = str(UTILDIR + "/make_summary_accuracy_plots.py \"{}\" ".format(study_title) + " ".join(roc_files))
-
+    cmd = str(UTILDIR + "/make_summary_accuracy_plots.py {} \"{}\" ".format(analysis_outputdir + "/accuracy_summary.pdf", study_title) + " ".join(roc_files))
+    
     print(cmd)
     subprocess.check_call(cmd, shell=True)
     

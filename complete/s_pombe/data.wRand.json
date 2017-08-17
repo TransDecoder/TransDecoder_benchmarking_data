@@ -1,0 +1,48 @@
+{
+    "data" : {
+
+        "STUDY" : "s_pombe complete",
+        
+        "REFERENCE": "input_files/spombe-all.fasta.CDS.gff",
+
+        "PREDICTIONS": {
+        
+            "genemark": {
+                "result": "output_fileswRand/GeneMarkS-T/spombe-all.fasta.wRand.gff"
+            },
+
+            "genemark-SS": {
+                "result": "output_fileswRand/GeneMarkS-T-SS/spombe-all.fasta.wRand.gff"
+            },
+
+
+
+
+            "transdecoder": {
+                "result": "output_fileswRand/TransDecoder/spombe-all.fasta.wRand.transdecoder.gff3"
+            },
+            "longorfs": {
+                "result": "output_fileswRand/TransDecoder/spombe-all.fasta.wRand.transdecoder_dir/longest_orfs.gff3"
+            },
+
+            "transdecoder-SS": {
+                "result": "output_fileswRand/TransDecoder-SS/spombe-all.fasta.wRand.transdecoder.gff3"
+            },
+            "longorfs-SS": {
+                "result": "output_fileswRand/TransDecoder-SS/spombe-all.fasta.wRand.transdecoder_dir/longest_orfs.gff3"
+            },
+
+            
+            "prodigal": {
+                "result": "output_fileswRand/Prodigal/prodigal.out"
+            },
+            "prodigal-SS": {
+                "result": "output_fileswRand/Prodigal/prodigal.out.+only"
+            }
+        }
+    }
+}
+
+
+
+

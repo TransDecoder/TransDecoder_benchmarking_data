@@ -95,11 +95,11 @@ main: {
 
         my $full_path = "$PROJ_BASEDIR/$ref_file";
         
-        print &get_transdecoder_cmd($full_path, 1) . "\n";
-        print &get_transdecoder_cmd($full_path, 1, 1) . "\n";
-        print &get_transdecoder_cmd($full_path, 1, 1, 1) . "\n";
+        #print &get_transdecoder_cmd($full_path, 1) . "\n";
+        #print &get_transdecoder_cmd($full_path, 1, 1) . "\n";
+        #print &get_transdecoder_cmd($full_path, 1, 1, 1) . "\n";
         
-        
+        print &get_transdecoder_cmd($full_path, 1, 0, 1) . "\n";
         
     }
 

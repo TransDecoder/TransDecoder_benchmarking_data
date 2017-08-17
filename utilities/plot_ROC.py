@@ -25,12 +25,14 @@ parser.add_argument("--pred_name", type=str, required=True, help="name for predi
 
 parser.add_argument("--scored_preds", type=str, required=True, help= "scored predictions including TP, FP, and FN")
 
+parser.add_argument("--strict", action="store_true", default=False, help="require both start and stop codon match for TP")
+
 args = parser.parse_args()
 
 
 predictor_name = args.pred_name
 scored_preds_file = args.scored_preds
-
+strict_mode = args.strict
 
 #plot ROC curve of an algorithm
 
@@ -136,18 +138,18 @@ def compute_accuracy_min_pred_len(lst, min_pred_len):
     tp = 0
     fp = 0
 
-    transcript_ids_3prime_match = set()
+    TP_containing_transcripts = set()
 
     for pred in preds_min_len:
         transcript_id = pred['transcript_id']
         match_type = pred['match_type']
-        if re.search("3", match_type):
-            transcript_ids_3prime_match.add(transcript_id)
             
         result_class = pred['result_class']
         
         if result_class == "TP":
-            tp +=1              
+            if ( (strict_mode and re.search("5", match_type)) or not strict_mode):
+                tp +=1
+                TP_containing_transcripts.add(transcript_id)
         elif result_class ==  "FP":
             fp +=1
         else:
@@ -155,7 +157,7 @@ def compute_accuracy_min_pred_len(lst, min_pred_len):
         
         #print("\t".join([`min_pred_len`, result_class, transcript_id, match_type]))
 
-    fn = len(truth_set_transcripts - transcript_ids_3prime_match)
+    fn = len(truth_set_transcripts - TP_containing_transcripts)
     
     sensitivity = float(tp)/float(tp+fn)
     specificity = float(tp)/float(tp+fp)

@@ -35,7 +35,8 @@ def run_analysis_pipe(prediction_type, ref_orfs_file, predictions_result_file, a
               " --truth {}".format(ref_orfs_file) +
               " > {} ".format(scored_predictions_file) )
 
-    subprocess.check_call(cmd, shell=True)
+    if not os.path.exists(scored_predictions_file):
+        subprocess.check_call(cmd, shell=True)
 
 
     ## ROC plots
@@ -45,7 +46,8 @@ def run_analysis_pipe(prediction_type, ref_orfs_file, predictions_result_file, a
               " --scored_preds {} ".format(scored_predictions_file) +
               " > {} ".format(roc_data_file) )
 
-    subprocess.check_call(cmd, shell=True)
+    if not os.path.exists(roc_data_file):
+        subprocess.check_call(cmd, shell=True)
 
     
               

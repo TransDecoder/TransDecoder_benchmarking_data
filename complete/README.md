@@ -1,10 +1,14 @@
 # benchmarking using complete reference orfs
 
 
-<m_musculus/analysis_dir/accuracy_summary.strict.pdf>>
+<m_musculus/analysis_dir/accuracy_summary.strict.pdf>
+
 <m_musculus/analysis_dir/accuracy_summary.pdf>
+
 <m_musculus/analysis_dir_wRand_TDvar/accuracy_summary.strict.pdf>
+
 <m_musculus/analysis_dir_wRand_TDvar/accuracy_summary.pdf>
+
 <m_musculus/analysis_dir_wRand/accuracy_summary.strict.pdf>
 <m_musculus/analysis_dir_wRand/accuracy_summary.pdf>
 <d_melanogaster/analysis_dir/accuracy_summary.strict.pdf>

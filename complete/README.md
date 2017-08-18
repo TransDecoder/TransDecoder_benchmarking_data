@@ -74,12 +74,11 @@ S. pombe reference sequences
 
 S. pombe + random
 
-*  [3prime](s_pombe/analysis_dir_wRand_TDvar/accuracy_summary.strict.pdf)
-*  [5,3prime](s_pombe/analysis_dir_wRand_TDvar/accuracy_summary.pdf)
-
-S. pombe + random, TD varied params
-
 *  [3prime](s_pombe/analysis_dir_wRand/accuracy_summary.strict.pdf)
 *  [5,3prime](s_pombe/analysis_dir_wRand/accuracy_summary.pdf)
 
+S. pombe + random, TD varied params
+
+*  [3prime](s_pombe/analysis_dir_wRand_TDvar/accuracy_summary.strict.pdf)
+*  [5,3prime](s_pombe/analysis_dir_wRand_TDvar/accuracy_summary.pdf)
 

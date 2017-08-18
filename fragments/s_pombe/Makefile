@@ -1,7 +1,7 @@
 
 
 analyze:
-	 ../../utilities/run_analysis_pipeline.py data.json
+	 ../../utilities/run_analysis_pipeline.py data.json analysis_dir
 
 
 clean:

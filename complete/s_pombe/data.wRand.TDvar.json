@@ -24,20 +24,9 @@
             },
 
 
-            "transdecoder-noRS-noLOA": {
-                "result": "output_fileswRand/TransDecoder-noRS-noLOA/spombe-all.fasta.wRand.transdecoder.gff3"
-            },
-
-            
             "transdecoder-noRS-AGO": {
                 "result": "output_fileswRand/TransDecoder-noRS-AGO/spombe-all.fasta.wRand.transdecoder.gff3"
-            },
-
-
-            "transdecoder-noRS-AGO-noLOA": {
-                "result": "output_fileswRand/TransDecoder-noRS-AGO-noLOA/spombe-all.fasta.wRand.transdecoder.gff3"
             }
-
 
         }
     }

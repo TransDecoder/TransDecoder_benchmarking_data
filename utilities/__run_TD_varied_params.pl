@@ -50,7 +50,7 @@ sub process_cmd {
 
 
 sub get_transdecoder_cmd {
-    my ($fasta_file, $start_refinement_off, $consider_all_orfs, $disable_long_orf_auto) = @_;
+    my ($fasta_file, $start_refinement_off, $consider_all_orfs) = @_;
 
     my $wRand = "";
     if ($fasta_file =~ /wRand$/) {
@@ -73,11 +73,8 @@ sub get_transdecoder_cmd {
         $params .= " --all_good_orfs";
         $outdir .= "-AGO";
     }
-    if ($disable_long_orf_auto) {
-        $params .= " --retain_long_orfs_mode strict --retain_long_orfs_length 1000000";
-        $outdir .= "-noLOA";
-    }
-            
+
+                
     if (! -d $outdir) {
         &process_cmd("mkdir -p $outdir");
     }
@@ -95,11 +92,10 @@ main: {
 
         my $full_path = "$PROJ_BASEDIR/$ref_file";
         
-        #print &get_transdecoder_cmd($full_path, 1) . "\n";
-        #print &get_transdecoder_cmd($full_path, 1, 1) . "\n";
-        #print &get_transdecoder_cmd($full_path, 1, 1, 1) . "\n";
-        
-        print &get_transdecoder_cmd($full_path, 1, 0, 1) . "\n";
+        print &get_transdecoder_cmd($full_path, 1) . "\n";  # noRS
+        print &get_transdecoder_cmd($full_path, 1, 1) . "\n"; # noRS AGO
+    
+                
         
     }
 

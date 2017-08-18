@@ -22,18 +22,10 @@
                 "result" : "output_fileswRand/TransDecoder-noRS/a_thaliana_ann.fna.wRand.transdecoder.gff3"
             },
 
-            "transdecoder-noRS-noLOA" : {
-                "result" : "output_fileswRand/TransDecoder-noRS-noLOA/a_thaliana_ann.fna.wRand.transdecoder.gff3"
-            },
-            
             "TransDecoder-noRS-AGO" : {
                 "result" : "output_fileswRand/TransDecoder-noRS-AGO/a_thaliana_ann.fna.wRand.transdecoder.gff3"
-            },
-
-            "TransDecoder-noRS-AGO-noLOA" : {
-                "result" : "output_fileswRand/TransDecoder-noRS-AGO-noLOA/a_thaliana_ann.fna.wRand.transdecoder.gff3"
             }
-                        
+
 
         }
     }

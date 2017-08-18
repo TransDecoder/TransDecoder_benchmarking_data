@@ -4,6 +4,9 @@ analyze:
 	../../utilities/run_analysis_pipeline.py data.json analysis_dir
 	../../utilities/run_analysis_pipeline.py data.wRand.json analysis_dir_wRand
 	../../utilities/run_analysis_pipeline.py data.wRand.TDvar.json analysis_dir_wRand_TDvar
+	../../utilities/run_analysis_pipeline.py data.json analysis_dir strict
+	../../utilities/run_analysis_pipeline.py data.wRand.json analysis_dir_wRand strict
+	../../utilities/run_analysis_pipeline.py data.wRand.TDvar.json analysis_dir_wRand_TDvar strict
 
 clean:
 	rm -rf ./analysis_dir*

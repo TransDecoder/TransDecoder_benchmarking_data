@@ -7,7 +7,10 @@ Comparisons include:
 *  LongOrfs and -SS
 
 
->AUC calculations aren't to be trusted due to trapezoidal rule violations. Work in progress.
+Benchmarking methods:
+*  3prime: only a 3-prime coordinate match is required for TPs.
+*  5,3prime:  both a 5-prime and 3-prime coordinate match are required for TPs - else if 3'-only, treated as FN.
+
 
 ## Mouse
 

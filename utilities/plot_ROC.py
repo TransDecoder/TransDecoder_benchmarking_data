@@ -7,13 +7,102 @@ from matplotlib.backends.backend_pdf import PdfPages
 import numpy as np
 from sklearn.metrics import auc
 import argparse
+import logging
 
+logger = logging.getLogger(__name__)
 
 ## Defining the range of prediction lengths to consider
 MIN_LENGTH_RANGE = 300   # any orfs, truth or predicted, will not be considered if smaller than this amount.
 max_range = 750
 step_size = 30
 
+
+#calculate sensitivity and specificity for a given list
+def compute_accuracy_min_pred_len(lst, min_pred_len):
+
+    preds_min_len = [ pred for pred in lst if pred['pred_length'] >= min_pred_len ] 
+    
+    tp = 0
+    fp = 0
+
+    TP_containing_transcripts = set()
+
+    for pred in preds_min_len:
+        transcript_id = pred['transcript_id']
+        match_type = pred['match_type']
+            
+        result_class = pred['result_class']
+        
+        if result_class == "TP":
+            if ( (strict_mode and re.search("5", match_type)) or not strict_mode):
+                tp +=1
+                TP_containing_transcripts.add(transcript_id)
+        elif result_class ==  "FP":
+            fp +=1
+        else:
+            raise RuntimeError("prediction has unrecognized result_class: {}".format(result_class))
+        
+        #print("\t".join([`min_pred_len`, result_class, transcript_id, match_type]))
+
+    fn = len(truth_set_transcripts - TP_containing_transcripts)
+    
+    sensitivity = float(tp)/float(tp+fn)
+    specificity = float(tp)/float(tp+fp)
+
+    print("\t".join([str(x) for x in [min_pred_len, tp, fp, fn, sensitivity, specificity, 1-specificity] ]))
+
+    
+    return sensitivity, specificity
+
+
+
+
+def auc(ordered_pts_list):
+
+    pts = ordered_pts_list[:]
+
+    auc = 0
+
+    ptA = pts.pop(0)
+
+    while pts:
+        ptB = pts.pop(0)
+
+        x1 = ptA[0]
+        y1 = ptA[1]
+
+        assert(x1 >= 0)
+        assert(y1 >= 0)
+
+        x2 = ptB[0]
+        y2 = ptB[1]
+
+        assert(x2 >= 0)
+        assert(y2 >= 0)
+
+        delta_x = abs(x2-x1)
+        delta_y = abs(y2-y1)
+
+        min_y = min(y1, y2)
+
+        base_trap_area = min_y * delta_x
+        top_triangle_area = delta_y * delta_x / 2
+
+        trap_area = base_trap_area + top_triangle_area
+
+        if x2 > x1:
+            auc += trap_area
+        else:
+            auc -= trap_area
+            
+        logger.debug("auc between pts {} and {}: {}".format(ptA, ptB, trap_area))
+
+        # set up for next pt
+        ptA = ptB
+    
+    logger.debug("auc total area: {}".format(auc))
+
+    return auc
 
 
 
@@ -130,43 +219,6 @@ for pred in prediction_text_lines:
 
 predictions_sorted_by_length = sorted(all_predictions, key=lambda pred: pred['pred_length'])
 
-#calculate sensitivity and specificity for a given list
-def compute_accuracy_min_pred_len(lst, min_pred_len):
-
-    preds_min_len = [ pred for pred in lst if pred['pred_length'] >= min_pred_len ] 
-    
-    tp = 0
-    fp = 0
-
-    TP_containing_transcripts = set()
-
-    for pred in preds_min_len:
-        transcript_id = pred['transcript_id']
-        match_type = pred['match_type']
-            
-        result_class = pred['result_class']
-        
-        if result_class == "TP":
-            if ( (strict_mode and re.search("5", match_type)) or not strict_mode):
-                tp +=1
-                TP_containing_transcripts.add(transcript_id)
-        elif result_class ==  "FP":
-            fp +=1
-        else:
-            raise RuntimeError("prediction has unrecognized result_class: {}".format(result_class))
-        
-        #print("\t".join([`min_pred_len`, result_class, transcript_id, match_type]))
-
-    fn = len(truth_set_transcripts - TP_containing_transcripts)
-    
-    sensitivity = float(tp)/float(tp+fn)
-    specificity = float(tp)/float(tp+fp)
-
-    print("\t".join([str(x) for x in [min_pred_len, tp, fp, fn, sensitivity, specificity, 1-specificity] ]))
-
-    
-    return sensitivity, specificity
-
 
 print("\t".join(["min_pred_len", "TP", "FP", "FN", "Sensitivity", "Specificity", "1-Specificity"]))
 
@@ -204,13 +256,17 @@ plt.plot(x_n, y_n, marker ='+')
 x_n = [0] + x_n + [1]
 y_n = [0] + y_n + [1]
 
-roc_auc = auc(x_n, y_n, reorder = True)
+roc_auc = auc(zip(x_n, y_n))
 
 print("#AUC = %.4f" % roc_auc) 
 
 plt.title(predictor_name + ', AUC = %.4f' % roc_auc)
 
-pdf_plot_filename = os.path.dirname(scored_preds_file) + "/" + predictor_name + ".roc.pdf"
+dname = os.path.dirname(scored_preds_file)
+if not dname:
+    dname = "."
+    
+pdf_plot_filename = dname + "/" + predictor_name + ".roc.pdf"
 pp = PdfPages(pdf_plot_filename)
 pp.savefig(plt.gcf())
 pp.close()

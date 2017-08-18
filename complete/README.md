@@ -1,13 +1,17 @@
 # benchmarking using complete reference orfs
 
+## Mouse
 
-<m_musculus/analysis_dir/accuracy_summary.strict.pdf>
+Mouse reference sequences
 
-<m_musculus/analysis_dir/accuracy_summary.pdf>
+[mouse - 3prime](m_musculus/analysis_dir/accuracy_summary.pdf)
+[mouse - 5,3prime](m_musculus/analysis_dir/accuracy_summary.strict.pdf)
 
-<m_musculus/analysis_dir_wRand_TDvar/accuracy_summary.strict.pdf>
+Mouse reference sequences + random sequences
 
-<m_musculus/analysis_dir_wRand_TDvar/accuracy_summary.pdf>
+[mouse w/ random - 3prime](<m_musculus/analysis_dir_wRand_TDvar/accuracy_summary.pdf)
+[mouse w/ random - 5,3prime](m_musculus/analysis_dir_wRand_TDvar/accuracy_summary.strict.pdf)
+
 
 <m_musculus/analysis_dir_wRand/accuracy_summary.strict.pdf>
 <m_musculus/analysis_dir_wRand/accuracy_summary.pdf>

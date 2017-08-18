@@ -1,10 +1,10 @@
 # benchmarking using complete reference orfs
 
 Comparisons include:
-GeneMarkS-T and -SS (strand-specific mode)
-Prodigal and -SS 
-TransDecoder and -SS, -noRS (no refine-start), AGO (all good orfs)
-LongOrfs and -SS
+*  GeneMarkS-T and -SS (strand-specific mode)
+*  Prodigal and -SS 
+*  TransDecoder and -SS, -noRS (no refine-start), AGO (all good orfs)
+*  LongOrfs and -SS
 
 
 >AUC calculations aren't to be trusted due to trapezoidal rule violations. Work in progress.

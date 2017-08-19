@@ -1,0 +1,57 @@
+#!/usr/bin/env Rscript
+
+options(stringsAsFactors = FALSE)
+
+
+num_longest = 500
+max_length = 5000
+
+main = function () {
+    
+    args<-commandArgs(TRUE)
+
+    if (length(args) == 0) {
+        stop("require param: cds.longest.scores")
+    }
+
+    data_file = args[1]
+    
+    data = read.table(data_file, header=T, com='', row.names=1)
+
+    rand_idx = grep("rand", row.names(len_norm_scores))
+
+    rand_data = data[rand_idx,]
+    reg_data = data[-rand_idx,]
+
+    par(mfrow=c(2,1))
+    boxplot_len_norm(reg_data)
+    boxplot_len_norm(rand_data)
+
+    
+    quit(save = "no", status = 0, runLast = FALSE)
+}
+
+
+boxplot_len_norm = function(data) {
+
+    data = data[data$seq_length <= max_length,]
+    data = data[rev(order(data$seq_length)),]
+    data = data[1:num_longest,]
+    
+    scores = data[,c('score_1', 'score_2', 'score_3', 'score_4', 'score_5', 'score_6')]
+
+    len_norm_scores = sweep(scores, 1, data$seq_length, '/')
+
+    boxplot(len_norm_scores, outline=F)
+    abline(h=0, col='blue')
+}
+    
+    
+    
+
+
+    
+if (length(args) == 0) {
+    stop("require param: dat_filename")
+}
+    

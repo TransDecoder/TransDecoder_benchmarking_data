@@ -1,0 +1,23 @@
+First link is RNA and second link is GFF file
+
+1. Drosophilla:
+
+ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/invertebrate/Drosophila_melanogaster/reference/GCF_000001215.4_Release_6_plus_ISO1_MT/GCF_000001215.4_Release_6_plus_ISO1_MT_rna_from_genomic.fna.gz
+
+ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/invertebrate/Drosophila_melanogaster/reference/GCF_000001215.4_Release_6_plus_ISO1_MT/GCF_000001215.4_Release_6_plus_ISO1_MT_genomic.gff.gz
+
+2. A. Thanliana:
+ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Arabidopsis_thaliana/reference/GCF_000001735.3_TAIR10/GCF_000001735.3_TAIR10_rna_from_genomic.fna.gz
+
+ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/plant/Arabidopsis_thaliana/reference/GCF_000001735.3_TAIR10/GCF_000001735.3_TAIR10_genomic.gff.gz
+
+3. M.Musculus:
+ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Mus_musculus/reference/GCF_000001635.25_GRCm38.p5/GCF_000001635.25_GRCm38.p5_rna_from_genomic.fna.gz
+
+ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/vertebrate_mammalian/Mus_musculus/reference/GCF_000001635.25_GRCm38.p5/GCF_000001635.25_GRCm38.p5_genomic.gff.gz
+
+4. S.Pombe:
+ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/fungi/Schizosaccharomyces_pombe/representative/GCF_000002945.1_ASM294v2/GCF_000002945.1_ASM294v2_rna_from_genomic.fna.gz
+
+ftp://ftp.ncbi.nlm.nih.gov/genomes/refseq/fungi/Schizosaccharomyces_pombe/representative/GCF_000002945.1_ASM294v2/GCF_000002945.1_ASM294v2_genomic.gff.gz
+

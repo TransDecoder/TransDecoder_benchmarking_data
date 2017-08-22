@@ -1,0 +1,38 @@
+{
+    "data" : {
+
+        "STUDY" : "mouse complete",
+        
+        "REFERENCE": "../input_files/mmus-all.fasta.CDS.gff",
+
+        "PREDICTIONS": {
+        
+            "genemark": {
+                "result": "../output_fileswRand/GeneMarkS-T/mmus-all.fasta.wRand.gff"
+            },
+            "genemark-SS": {
+                "result": "../output_fileswRand/GeneMarkS-T-SS/mmus-all.fasta.wRand.gff"
+            },
+
+
+            
+            "transdecoder": {
+                "result": "../output_fileswRand/TransDecoder/mmus-all.fasta.wRand.transdecoder.gff3"
+            },
+
+            "def_custom_single": {
+                "result" : "longest_orfs.cds.scores.def_single_custom.gff"
+            },
+
+                                    
+            "prodigal": {
+                "result": "../output_fileswRand/Prodigal/prodigal.out"
+            }
+          
+        }
+    }
+}
+
+
+
+

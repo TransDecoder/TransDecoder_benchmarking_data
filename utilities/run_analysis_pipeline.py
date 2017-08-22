@@ -33,7 +33,6 @@ def run_analysis_pipe(prediction_type, ref_orfs_file, predictions_result_file, a
     if not os.path.exists(predictions_cds_gff):
         subprocess.check_call(cmd, shell=True)
 
-
     ## scoring
     
     scored_predictions_file = predictions_cds_gff + ".scored"

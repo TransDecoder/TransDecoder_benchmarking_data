@@ -1,0 +1,34 @@
+{
+    "data" : {
+
+        "STUDY" : "a_thaliana complete",
+        
+        "REFERENCE": "../input_files/a_thaliana_ann.fna.CDS.gff",
+
+        "PREDICTIONS": {
+        
+
+            "genemark": {
+                "result": "../output_fileswRand/GeneMarkS-T/a_thaliana_ann.fna.wRand.gff"
+            },
+
+            "transdecoder": {
+                "result": "../output_fileswRand/TransDecoder/a_thaliana_ann.fna.wRand.transdecoder.gff3"
+            },
+
+            "prodigal": {
+                "result": "../output_fileswRand/Prodigal/prodigal.out"
+            },
+
+            "def_custom_single": {
+                "result" : "longest_orfs.cds.scores.def_single_custom.gff"
+            }
+            
+            
+        }
+    }
+}
+
+
+
+

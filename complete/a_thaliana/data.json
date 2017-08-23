@@ -3,32 +3,30 @@
 
         "STUDY" : "a_thaliana complete",
         
-        "REFERENCE": "input_files/a_thaliana_ann.fna.CDS.gff",
+        "REFERENCE": "input_files/athal.ref_transcripts.CDS.gff",
 
         "PREDICTIONS": {
         
 
             "genemark": {
-                "result": "output_files/GeneMarkS-T/a_thaliana_ann.fna.gff"
+                "result": "output_files/GeneMarkS-T/athal.ref_transcripts.fasta.gff"
             },
             "genemark-SS": {
-                "result": "output_files/GeneMarkS-T-SS/a_thaliana_ann.fna.gff"
+                "result": "output_files/GeneMarkS-T-SS/athal.ref_transcripts.fasta.gff"
             },
 
+
+
             "transdecoder": {
-                "result": "output_files/TransDecoder/a_thaliana_ann.fna.transdecoder.gff3"
-            },
-            "longorfs": {
-                "result": "output_files/TransDecoder/a_thaliana_ann.fna.transdecoder_dir/longest_orfs.gff3"
+                "result": "output_files/TransDecoder/athal.ref_transcripts.fasta.transdecoder.gff3"
             },
 
             "transdecoder-SS": {
-                "result": "output_files/TransDecoder-SS/a_thaliana_ann.fna.transdecoder.gff3"
-            },
-            "longorfs-SS": {
-                "result": "output_files/TransDecoder-SS/a_thaliana_ann.fna.transdecoder_dir/longest_orfs.gff3"
+                "result": "output_files/TransDecoder-SS/athal.ref_transcripts.fasta.transdecoder.gff3"
             },
 
+
+            
             "prodigal": {
                 "result": "output_files/Prodigal/prodigal.out"
             },

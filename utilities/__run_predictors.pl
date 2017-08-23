@@ -6,20 +6,30 @@ use warnings;
 use Cwd;
 use FindBin;
 
-my @ref_files = qw (fragments/m_musculus/input_files/mmus-all-fragments.fasta
-                    fragments/d_melanogaster/input_files/dmel-all-fragments.fasta
-                    fragments/a_thaliana/input_files/a_thaliana_ann-fragments.fasta
-                    fragments/s_pombe/input_files/spombe-all-fragments.fasta
 
-                    complete/m_musculus/input_files/mmus-all.fasta
-                    complete/d_melanogaster/input_files/dmel-all.fasta
-                    complete/a_thaliana/input_files/a_thaliana_ann.fna
-                    complete/s_pombe/input_files/spombe-all.fasta
+#qw (fragments/m_musculus/input_files/mmus-all-fragments.fasta
+#                    fragments/d_melanogaster/input_files/dmel-all-fragments.fasta
+#                    fragments/a_thaliana/input_files/a_thaliana_ann-fragments.fasta
+#                    fragments/s_pombe/input_files/spombe-all-fragments.fasta
 
-                    complete/m_musculus/input_files/mmus-all.fasta.wRand
-                    complete/d_melanogaster/input_files/dmel-all.fasta.wRand
-                    complete/a_thaliana/input_files/a_thaliana_ann.fna.wRand
-                    complete/s_pombe/input_files/spombe-all.fasta.wRand
+
+my @ref_files =  qw(
+
+
+    complete/m_musculus/input_files/mouse.ref_transcripts.fasta
+    complete/m_musculus/input_files/mouse.ref_transcripts.fasta.wRand
+        
+    complete/d_melanogaster/input_files/dmel.ref_transcripts.fasta
+    complete/d_melanogaster/input_files/dmel.ref_transcripts.fasta.wRand
+
+    complete/a_thaliana/input_files/athal.ref_transcripts.fasta
+    complete/a_thaliana/input_files/athal.ref_transcripts.fasta.wRand
+
+    complete/s_pombe/input_files/spombe.ref_transcripts.fasta
+    complete/s_pombe/input_files/spombe.ref_transcripts.fasta.wRand
+
+
+
  
 );
 
@@ -45,7 +55,7 @@ sub get_genemark_cmd {
 
     my $wRand = "";
     if ($fasta_file =~ /wRand$/) {
-        $wRand = "wRand";
+        $wRand = "_wRand";
     }
     
     my @pts = split(/\//, $fasta_file);
@@ -77,7 +87,7 @@ sub get_prodigal_cmd {
 
     my $wRand = "";
     if ($fasta_file =~ /wRand$/) {
-        $wRand = "wRand";
+        $wRand = "_wRand";
     }
     
     my @pts = split(/\//, $fasta_file);
@@ -100,7 +110,7 @@ sub get_transdecoder_cmd {
 
     my $wRand = "";
     if ($fasta_file =~ /wRand$/) {
-        $wRand = "wRand";
+        $wRand = "_wRand";
     }
     
     my @pts = split(/\//, $fasta_file);

@@ -3,35 +3,26 @@
 
         "STUDY" : "mouse complete",
         
-        "REFERENCE": "input_files/mmus-all.fasta.CDS.gff",
+        "REFERENCE": "input_files/mouse.ref_transcripts.CDS.gff",
 
         "PREDICTIONS": {
         
             "genemark": {
-                "result": "output_files/GeneMarkS-T/mmus-all.fasta.gff"
+                "result": "output_files/GeneMarkS-T/mouse.ref_transcripts.fasta.gff"
             },
             "genemark-SS": {
-                "result": "output_files/GeneMarkS-T-SS/mmus-all.fasta.gff"
+                "result": "output_files/GeneMarkS-T-SS/mouse.ref_transcripts.fasta.gff"
             },
 
 
             
             "transdecoder": {
-                "result": "output_files/TransDecoder/mmus-all.fasta.transdecoder.gff3"
+                "result": "output_files/TransDecoder/mouse.ref_transcripts.fasta.transdecoder.gff3"
             },
-            "longorfs": {
-                "result": "output_files/TransDecoder/mmus-all.fasta.transdecoder_dir/longest_orfs.gff3"
-            },
-
 
             "transdecoder-SS": {
-                "result": "output_files/TransDecoder-SS/mmus-all.fasta.transdecoder.gff3"
+                "result": "output_files/TransDecoder-SS/mouse.ref_transcripts.fasta.transdecoder.gff3"
             },
-            "longorfs-SS": {
-                "result": "output_files/TransDecoder-SS/mmus-all.fasta.transdecoder_dir/longest_orfs.gff3"
-            },
-
-
             
             "prodigal": {
                 "result": "output_files/Prodigal/prodigal.out"

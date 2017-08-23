@@ -3,26 +3,30 @@
 
         "STUDY" : "a_thaliana complete",
         
-        "REFERENCE": "../input_files/a_thaliana_ann.fna.CDS.gff",
+        "REFERENCE": "../input_files/athal.ref_transcripts.CDS.gff",
 
         "PREDICTIONS": {
         
 
             "genemark": {
-                "result": "../output_fileswRand/GeneMarkS-T/a_thaliana_ann.fna.wRand.gff"
+                "result": "../output_files_wRand/GeneMarkS-T/athal.ref_transcripts.fasta.wRand.gff"
             },
 
+            
             "transdecoder": {
-                "result": "../output_fileswRand/TransDecoder/a_thaliana_ann.fna.wRand.transdecoder.gff3"
+                "result": "../output_files_wRand/TransDecoder/athal.ref_transcripts.fasta.wRand.transdecoder.gff3"
             },
 
+                        
             "prodigal": {
-                "result": "../output_fileswRand/Prodigal/prodigal.out"
+                "result": "../output_files_wRand/Prodigal/prodigal.out"
             },
 
+            
             "def_custom_single": {
                 "result" : "longest_orfs.cds.scores.def_single_custom.gff"
             }
+            
             
             
         }

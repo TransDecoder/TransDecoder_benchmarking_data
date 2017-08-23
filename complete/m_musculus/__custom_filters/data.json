@@ -3,32 +3,27 @@
 
         "STUDY" : "mouse complete",
         
-        "REFERENCE": "../input_files/mmus-all.fasta.CDS.gff",
+        "REFERENCE": "../input_files/mouse.ref_transcripts.CDS.gff",
 
         "PREDICTIONS": {
         
             "genemark": {
-                "result": "../output_fileswRand/GeneMarkS-T/mmus-all.fasta.wRand.gff"
-            },
-            "genemark-SS": {
-                "result": "../output_fileswRand/GeneMarkS-T-SS/mmus-all.fasta.wRand.gff"
+                "result": "../output_files_wRand/GeneMarkS-T/mouse.ref_transcripts.fasta.wRand.gff"
             },
 
-
-            
+                        
             "transdecoder": {
-                "result": "../output_fileswRand/TransDecoder/mmus-all.fasta.wRand.transdecoder.gff3"
+                "result": "../output_files_wRand/TransDecoder/mouse.ref_transcripts.fasta.wRand.transdecoder.gff3"
             },
 
+                        
+            "prodigal": {
+                "result": "../output_files/Prodigal/prodigal.out"
+            },
+            
             "def_custom_single": {
                 "result" : "longest_orfs.cds.scores.def_single_custom.gff"
-            },
-
-                                    
-            "prodigal": {
-                "result": "../output_fileswRand/Prodigal/prodigal.out"
             }
-          
         }
     }
 }

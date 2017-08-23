@@ -17,21 +17,26 @@
                 "result": "../output_files_wRand/TransDecoder/athal.ref_transcripts.fasta.wRand.transdecoder.gff3"
             },
 
-                        
             "prodigal": {
                 "result": "../output_files_wRand/Prodigal/prodigal.out"
             },
-
             
             "def_custom_single": {
                 "result" : "longest_orfs.cds.scores.def_single_custom.gff"
             },
 
-            "athal_tree": {
-                "result" : "longest_orfs.cds.scores.athal_tree.gff"
+            "def_custom_all": {
+                "result" : "longest_orfs.cds.scores.def_all_custom.gff"
+            },
+            
+            "athal_rpart_all": {
+                "result" : "athal.rpart_all.gff"
+            },
+
+            "athal_rpart_single": {
+                "result" : "athal.rpart_single.gff"
             }
                         
-            
         }
     }
 }

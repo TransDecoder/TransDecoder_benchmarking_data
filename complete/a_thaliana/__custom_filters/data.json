@@ -25,9 +25,12 @@
             
             "def_custom_single": {
                 "result" : "longest_orfs.cds.scores.def_single_custom.gff"
+            },
+
+            "athal_tree": {
+                "result" : "longest_orfs.cds.scores.athal_tree.gff"
             }
-            
-            
+                        
             
         }
     }

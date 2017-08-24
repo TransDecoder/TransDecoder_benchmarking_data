@@ -13,6 +13,10 @@ set -ev
 ~/GITHUB/TransDecoder/util/misc/select_TD_orfs.py --long_orfs_cds longest_orfs.cds --long_orfs_scores longest_orfs.cds.scores  --all_good_orfs --td_orig > td_orig.all.gff
 ~/GITHUB/TransDecoder/util/misc/select_TD_orfs.py --long_orfs_cds longest_orfs.cds --long_orfs_scores longest_orfs.cds.scores  --single_best --td_orig > td_orig.single.gff
 
+## td now:
+~/GITHUB/TransDecoder/util/select_best_ORFs_per_transcript.pl  --gff3_file longest_orfs.gff3  --cds_scores longest_orfs.cds.scores --min_length_auto_accept 1000  > td.now.gff3
+
+
 
 ~/GITHUB/TransDecoder_benchmarking_data/utilities/run_analysis_pipeline.py  data.json analysis_dir/
 

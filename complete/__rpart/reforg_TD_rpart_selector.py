@@ -26,10 +26,16 @@ def main():
 
     prediction_list = td.parse_predictions_and_scores(long_orfs_scored_file, predicted_orf_coords)
 
+
+    ## run different org trees
     athal_rpart_tree(prediction_list, predicted_orf_coords)
+    
+    dmel_rpart_tree(prediction_list, predicted_orf_coords)
 
+    mmus_rpart_tree(prediction_list, predicted_orf_coords)
 
-
+    spom_rpart_tree(prediction_list, predicted_orf_coords)
+    
     sys.exit(0)
 
 
@@ -37,6 +43,20 @@ def length_normalize(length, frame_scores):
     frame_scores = [ y / 4.0 for y in frame_scores]
 
     return frame_scores
+
+
+def write_outputs(preds, token):
+    
+    all_preds_filename = token + ".rpart_all.gff"
+    with open(all_preds_filename, 'w') as ofh:
+        td.write_preds_to_file(preds, ofh)
+
+    single_preds_filename = token + ".rpart_single.gff"
+    single_orfs = td.select_single_orf_per_transcript(preds)
+    with open(single_preds_filename, 'w') as ofh:
+        td.write_preds_to_file(single_orfs, ofh)
+
+
 
 
 def athal_rpart_tree(prediction_list, predicted_orf_coords):
@@ -66,15 +86,86 @@ def athal_rpart_tree(prediction_list, predicted_orf_coords):
 
     athal_orfs = td.select(prediction_list, predicted_orf_coords, athal_alg)
 
-    athal_all_preds_filename = "athal.rpart_all.gff"
-    with open(athal_all_preds_filename, 'w') as ofh:
-        td.write_preds_to_file(athal_orfs, ofh)
+    write_outputs(athal_orfs, "athal")
 
-    athal_single_preds_filename = "athal.rpart_single.gff"
-    athal_single_orfs = td.select_single_orf_per_transcript(athal_orfs)
-    with open(athal_single_preds_filename, 'w') as ofh:
-        td.write_preds_to_file(athal_single_orfs, ofh)
+
+def dmel_rpart_tree(prediction_list, predicted_orf_coords):
+
+
+    def dmel_alg(orf_length, frame_scores):
+        frame_scores = length_normalize(orf_length, frame_scores)
+
+        pass_orf = True
+
+        if td.fst_is_max_all(frame_scores):
+            if frame_scores[0] < -0.0096:
+                pass_orf = False
+        else:
+            pass_orf = False
+
+        return pass_orf
     
+    dmel_orfs = td.select(prediction_list, predicted_orf_coords, dmel_alg)
+
+    write_outputs(dmel_orfs, "dmel")
+
+
+def mmus_rpart_tree(prediction_list, predicted_orf_coords):
+
+
+    def mmus_alg(orf_length, frame_scores):
+
+        frame_scores = length_normalize(orf_length, frame_scores)
+
+        pass_orf = True
+        
+        if orf_length > 668:
+            if frame_scores[0] < 0.5:
+                pass_orf = False
+        else:
+            if td.fst_is_max_all(frame_scores):
+                if frame_scores[0] >= 0.027:
+                    if orf_length < 406:
+                        pass_orf = False
+                else:
+                    pass_orf = False
+            else:
+                pass_orf = False
+
+        return pass_orf
+
+        
+    
+    mmus_orfs = td.select(prediction_list, predicted_orf_coords, mmus_alg)
+    
+    write_outputs(mmus_orfs, "mmus")
+
+
+def spom_rpart_tree(prediction_list, predicted_orf_coords):
+
+
+    def spom_alg(orf_length, frame_scores):
+        
+        frame_scores = length_normalize(orf_length, frame_scores)
+
+        pass_orf = True
+        
+        if td.fst_is_max_all(frame_scores):
+            if frame_scores[0] < 0.0037:
+                pass_orf = False
+        else:
+            pass_orf = False
+
+        return pass_orf
+
+        
+    
+    spom_orfs = td.select(prediction_list, predicted_orf_coords, spom_alg)
+    
+    write_outputs(spom_orfs, "spom")
+
+
+
 
 
 

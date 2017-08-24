@@ -27,6 +27,10 @@
 
             "def_custom_all": {
                 "result" : "longest_orfs.cds.scores.def_all_custom.gff"
+            },
+
+            "td_now" : {
+                "result" : "td.now.gff3"
             }
             
                         

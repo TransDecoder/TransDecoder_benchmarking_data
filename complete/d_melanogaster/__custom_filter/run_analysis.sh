@@ -20,10 +20,22 @@ set -ev
 
 ~/GITHUB/TransDecoder/util/misc/get_FP_FN_scores.py  longest_orfs.cds.scores longest_orfs.cds analysis_dir/def_custom_single.cds.gff.scored | sort -k12,12gr > custom.FP_FNs.dat
 
+
+## rpart trees:
+
 ../../__rpart/reforg_TD_rpart_selector.py  --long_orfs_cds longest_orfs.cds --long_orfs_scores longest_orfs.cds.scores
 
 ~/GITHUB/TransDecoder_benchmarking_data/utilities/run_analysis_pipeline.py data.rpart.single.json single
 
 ~/GITHUB/TransDecoder_benchmarking_data/utilities/run_analysis_pipeline.py data.rpart.all.json all
+
+
+## td alg vary:
+
+../../__rpart/vary_TD_selection_rules.py  --long_orfs_cds longest_orfs.cds --long_orfs_scores longest_orfs.cds.scores
+
+~/GITHUB/TransDecoder_benchmarking_data/utilities/run_analysis_pipeline.py data.TDvary.json analysis_TDvary
+
+~/GITHUB/TransDecoder_benchmarking_data/utilities/run_analysis_pipeline.py data.TDvary.single.json analysis_TDvary_single
 
 

@@ -17,10 +17,16 @@ use FindBin;
 #                    complete/s_pombe/input_files/spombe-all.fasta
 
 my @ref_files = qw(
-                    complete/m_musculus/input_files/mmus-all.fasta.wRand
-                    complete/d_melanogaster/input_files/dmel-all.fasta.wRand
-                    complete/a_thaliana/input_files/a_thaliana_ann.fna.wRand
-                    complete/s_pombe/input_files/spombe-all.fasta.wRand
+    complete/m_musculus/input_files/mouse.ref_transcripts.fasta.wRand
+
+    complete/d_melanogaster/input_files/dmel.ref_transcripts.fasta.wRand
+
+    complete/a_thaliana/input_files/athal.ref_transcripts.fasta.wRand
+
+    complete/s_pombe/input_files/spombe.ref_transcripts.fasta.wRand
+
+
+
 );
 
 
@@ -60,7 +66,7 @@ sub get_transdecoder_cmd {
     my @pts = split(/\//, $fasta_file);
     pop @pts;
     pop @pts;
-    push (@pts, "output_fileswRand", "TransDecoder");
+    push (@pts, "output_files_wRand", "TransDecoder");
     
     my $outdir = join("/", @pts);
 

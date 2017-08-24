@@ -3,27 +3,27 @@
 
         "STUDY" : "a_thaliana complete",
         
-        "REFERENCE": "input_files/a_thaliana_ann.fna.CDS.gff",
+        "REFERENCE": "input_files/athal.ref_transcripts.CDS.gff",
 
         "PREDICTIONS": {
 
             "transdecoder": {
-                "result": "output_fileswRand/TransDecoder/a_thaliana_ann.fna.wRand.transdecoder.gff3"
+                "result": "output_files_wRand/TransDecoder/athal.ref_transcripts.fasta.wRand.transdecoder.gff3"
             },
             "longorfs": {
-                "result": "output_fileswRand/TransDecoder/a_thaliana_ann.fna.wRand.transdecoder_dir/longest_orfs.gff3"
+                "result": "output_files_wRand/TransDecoder/athal.ref_transcripts.fasta.wRand.transdecoder_dir/longest_orfs.gff3"
             },
 
             "transdecoder-SS": {
-                "result": "output_fileswRand/TransDecoder-SS/a_thaliana_ann.fna.wRand.transdecoder.gff3"
+                "result": "output_files_wRand/TransDecoder-SS/athal.ref_transcripts.fasta.wRand.transdecoder.gff3"
             },
 
             "transdecoder-noRS" : {
-                "result" : "output_fileswRand/TransDecoder-noRS/a_thaliana_ann.fna.wRand.transdecoder.gff3"
+                "result" : "output_files_wRand/TransDecoder-noRS/athal.ref_transcripts.fasta.wRand.transdecoder.gff3"
             },
 
             "TransDecoder-noRS-AGO" : {
-                "result" : "output_fileswRand/TransDecoder-noRS-AGO/a_thaliana_ann.fna.wRand.transdecoder.gff3"
+                "result" : "output_files_wRand/TransDecoder-noRS-AGO/athal.ref_transcripts.fasta.wRand.transdecoder.gff3"
             }
 
 

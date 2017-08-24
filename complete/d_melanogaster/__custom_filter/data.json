@@ -1,22 +1,22 @@
 {
     "data" : {
 
-        "STUDY" : "s_pombe complete",
+        "STUDY" : "d_melanogaster complete",
         
-        "REFERENCE": "../input_files/spombe.ref_transcripts.CDS.gff",
+        "REFERENCE": "../input_files/dmel.ref_transcripts.CDS.gff",
 
         "PREDICTIONS": {
         
+
             "genemark": {
-                "result": "../output_files_wRand/GeneMarkS-T/spombe.ref_transcripts.fasta.wRand.gff"
+                "result": "../output_files_wRand/GeneMarkS-T/dmel.ref_transcripts.fasta.wRand.gff"
             },
 
 
             "transdecoder": {
-                "result": "../output_files_wRand/TransDecoder/spombe.ref_transcripts.fasta.wRand.transdecoder.gff3"
+                "result": "../output_files_wRand/TransDecoder/dmel.ref_transcripts.fasta.wRand.transdecoder.gff3"
             },
 
-            
             "prodigal": {
                 "result": "../output_files_wRand/Prodigal/prodigal.out"
             },
@@ -28,6 +28,7 @@
             "def_custom_all": {
                 "result" : "longest_orfs.cds.scores.def_all_custom.gff"
             }
+            
         }
     }
 }

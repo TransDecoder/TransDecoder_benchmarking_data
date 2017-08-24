@@ -25,6 +25,3 @@ set -ev
 ~/GITHUB/TransDecoder_benchmarking_data/utilities/run_analysis_pipeline.py data.rpart.all.json all
 
 
-
-
- 

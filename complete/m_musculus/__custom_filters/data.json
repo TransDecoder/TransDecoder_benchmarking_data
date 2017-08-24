@@ -23,7 +23,12 @@
             
             "def_custom_single": {
                 "result" : "longest_orfs.cds.scores.def_single_custom.gff"
+            },
+
+            "def_custom_all": {
+                "result" : "longest_orfs.cds.scores.def_all_custom.gff"
             }
+            
         }
     }
 }

@@ -27,15 +27,8 @@
 
             "def_custom_all": {
                 "result" : "longest_orfs.cds.scores.def_all_custom.gff"
-            },
-            
-            "athal_rpart_all": {
-                "result" : "athal.rpart_all.gff"
-            },
-
-            "athal_rpart_single": {
-                "result" : "athal.rpart_single.gff"
             }
+            
                         
         }
     }

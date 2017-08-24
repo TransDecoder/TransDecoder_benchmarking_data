@@ -1,0 +1,42 @@
+{
+    "data" : {
+
+        "STUDY" : "mouse complete",
+        
+        "REFERENCE": "../input_files/mouse.ref_transcripts.CDS.gff",
+
+        "PREDICTIONS": {
+        
+            "athal" : {
+                "result" : "athal.rpart_single.gff"
+            },
+
+            "dmel" : {
+                "result" : "dmel.rpart_single.gff"
+            },
+
+            "mmus" : {
+                "result" : "mmus.rpart_single.gff"
+            },
+
+            "spom" : {
+                "result" : "spom.rpart_single.gff"
+            },
+
+            "td_orig" : {
+                "result" : "td_orig.single.gff"
+            },
+
+            "td_new" : {
+                "result" : "longest_orfs.cds.scores.def_single_custom.gff"
+            }
+
+            
+            
+        }
+    }
+}
+
+
+
+

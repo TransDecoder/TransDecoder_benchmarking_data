@@ -1,12 +1,12 @@
 {
     "data" : {
 
-        "STUDY" : "a_thaliana complete",
+        "STUDY" : "mouse complete",
         
-        "REFERENCE": "../input_files/athal.ref_transcripts.CDS.gff",
+        "REFERENCE": "../input_files/mouse.ref_transcripts.CDS.gff",
 
         "PREDICTIONS": {
-            
+        
             "athal" : {
                 "result" : "athal.rpart_all.gff"
             },
@@ -29,11 +29,9 @@
 
             "td_new" : {
                 "result" : "longest_orfs.cds.scores.def_all_custom.gff"
-            },
-            
-            "td_new_allgood" : {
-                "result" : "longest_orfs.cds.scores.def_all_good_custom.gff"
             }
+
+            
             
         }
     }

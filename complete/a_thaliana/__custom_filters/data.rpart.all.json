@@ -1,0 +1,44 @@
+{
+    "data" : {
+
+        "STUDY" : "a_thaliana complete",
+        
+        "REFERENCE": "../input_files/athal.ref_transcripts.CDS.gff",
+
+        "PREDICTIONS": {
+            
+            "athal" : {
+                "result" : "athal.rpart_all.gff"
+            },
+
+            "dmel" : {
+                "result" : "dmel.rpart_all.gff"
+            },
+
+            "mmus" : {
+                "result" : "mmus.rpart_all.gff"
+            },
+
+            "spom" : {
+                "result" : "spom.rpart_all.gff"
+            },
+
+            "td_orig" : {
+                "result" : "td_orig.all.gff"
+            },
+
+            "td_new" : {
+                "result" : "longest_orfs.cds.scores.def_all_custom.gff"
+            },
+            
+            "td_new_noverlp" : {
+                "result" : "longest_orfs.cds.scores.def_nonoverlap_custom.gff"
+            }
+            
+        }
+    }
+}
+
+
+
+

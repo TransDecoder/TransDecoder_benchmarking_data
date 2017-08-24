@@ -11,6 +11,10 @@ set -e
 
 ~/GITHUB/TransDecoder_benchmarking_data/utilities/run_analysis_pipeline.py  data.json analysis_dir/
 
+~/GITHUB/TransDecoder_benchmarking_data/utilities/run_analysis_pipeline.py data.rpart.single.json single
+
+~/GITHUB/TransDecoder_benchmarking_data/utilities/run_analysis_pipeline.py data.rpart.all.json all
+
 ~/GITHUB/TransDecoder/util/misc/get_FP_FN_scores.py  longest_orfs.cds.scores longest_orfs.cds analysis_dir/def_custom_single.cds.gff.scored | sort -k12,12gr > custom.FP_FNs.dat
 
 

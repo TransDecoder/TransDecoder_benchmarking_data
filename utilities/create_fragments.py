@@ -54,7 +54,7 @@ for i in range(len(lines)):
         if chop_pos > midpt:
             f = frags[1]
             adj_cds_st = 1
-            adj_cds_end = cds_end-chop_pos
+            adj_cds_end = cds_end - chop_pos
         
         frag_length = len(f)
         

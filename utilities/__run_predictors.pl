@@ -33,6 +33,17 @@ my @ref_files =  qw(
     complete/s_pombe/input_files/spombe.ref_transcripts.fasta.wRand
 
 
+    fragments/m_musculus/input_files/mouse.fragmented_transcripts.fasta
+    fragments/m_musculus/input_files/mouse.fragmented_transcripts.fasta.wRand
+
+    fragments/d_melanogaster/input_files/dmel.fragmented_transcripts.fasta
+    fragments/d_melanogaster/input_files/dmel.fragmented_transcripts.fasta.wRand
+
+    fragments/a_thaliana/input_files/athal.fragmented_transcripts.fasta
+    fragments/a_thaliana/input_files/athal.fragmented_transcripts.fasta.wRand
+
+    fragments/s_pombe/input_files/spombe.fragmented_transcripts.fasta
+    fragments/s_pombe/input_files/spombe.fragmented_transcripts.fasta.wRand
 
  
 );

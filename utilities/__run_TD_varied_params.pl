@@ -6,17 +6,9 @@ use warnings;
 use Cwd;
 use FindBin;
 
-#                    (fragments/m_musculus/input_files/mmus-all-fragments.fasta
-#                    fragments/d_melanogaster/input_files/dmel-all-fragments.fasta
-#                    fragments/a_thaliana/input_files/a_thaliana_ann-fragments.fasta
-#                    fragments/s_pombe/input_files/spombe-all-fragments.fasta
-#
-#                    complete/m_musculus/input_files/mmus-all.fasta
-#                    complete/d_melanogaster/input_files/dmel-all.fasta
-#                    complete/a_thaliana/input_files/a_thaliana_ann.fna
-#                    complete/s_pombe/input_files/spombe-all.fasta
 
 my @ref_files = qw(
+
     complete/m_musculus/input_files/mouse.ref_transcripts.fasta.wRand
 
     complete/d_melanogaster/input_files/dmel.ref_transcripts.fasta.wRand
@@ -25,6 +17,13 @@ my @ref_files = qw(
 
     complete/s_pombe/input_files/spombe.ref_transcripts.fasta.wRand
 
+    fragments/m_musculus/input_files/mouse.fragmented_transcripts.fasta.wRand
+
+    fragments/d_melanogaster/input_files/dmel.fragmented_transcripts.fasta.wRand
+
+    fragments/a_thaliana/input_files/athal.fragmented_transcripts.fasta.wRand
+
+    fragments/s_pombe/input_files/spombe.fragmented_transcripts.fasta.wRand
 
 
 );

@@ -7,10 +7,18 @@ from random import randint
 import random
 path = os.getcwd()
 
+
+usage = "usage: {} target.fasta\n\n".format(sys.argv[0])
+
+if len(sys.argv) < 2:
+    sys.stderr.write(usage)
+    sys.exit(1)
+
+
+
 in_file = sys.argv[1]
-op_file = sys.argv[2]
+
 f = open(path+"/"+in_file,"r")
-fw = open(path+"/"+op_file,"w")
 lines = f.readlines()
 
 #normal distribution
@@ -58,6 +66,6 @@ for i in range(len(lines)):
 
 
 for key in all_frag_trans.keys():
-    fw.write(key+'\n')
-    fw.write(all_frag_trans[key]+'\n') 
+    sys.stdout.write(key+'\n')
+    sys.stdout.write(all_frag_trans[key]+'\n') 
 

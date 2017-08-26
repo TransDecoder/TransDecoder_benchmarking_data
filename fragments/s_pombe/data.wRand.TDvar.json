@@ -1,0 +1,37 @@
+{
+    "data" : {
+
+        "STUDY" : "s_pombe fragments",
+
+        "REFERENCE": "input_files/spombe.fragmented_transcripts.CDS.gff",
+
+        "PREDICTIONS": {
+        
+            "transdecoder": {
+                "result": "output_files_wRand/TransDecoder/spombe.fragmented_transcripts.fasta.wRand.transdecoder.gff3"
+            },
+            "longorfs": {
+                "result": "output_files_wRand/TransDecoder/spombe.fragmented_transcripts.fasta.wRand.transdecoder_dir/longest_orfs.gff3"
+            },
+
+            "transdecoder-SS": {
+                "result": "output_files_wRand/TransDecoder-SS/spombe.fragmented_transcripts.fasta.wRand.transdecoder.gff3"
+            },
+
+
+            "transdecoder-noRS": {
+                "result": "output_files_wRand/TransDecoder-noRS/spombe.fragmented_transcripts.fasta.wRand.transdecoder.gff3"
+            },
+
+            
+            "transdecoder-noRS-AGO": {
+                "result": "output_files_wRand/TransDecoder-noRS-AGO/spombe.fragmented_transcripts.fasta.wRand.transdecoder.gff3"
+            }
+
+        }
+    }
+}
+
+
+
+

@@ -9,3 +9,4 @@ set -ev
 ../../../__rpart/vary_TD_selection_rules.py --long_orfs_cds longest_orfs.cds --long_orfs_scores longest_orfs.cds.scores
 
 ../../../utilities/run_analysis_pipeline.py data.TDvary.json analysis_TDvary
+../../../utilities/run_analysis_pipeline.py data.TDvary.single.json analysis_TDvary_single

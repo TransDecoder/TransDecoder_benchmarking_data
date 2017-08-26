@@ -25,7 +25,7 @@
             },
             
             "transdecoder-noRS-single": {
-                "result": "output_files_wRand/TransDecoder-noRS-AGO/mouse.ref_transcripts.fasta.wRand.transdecoder.gff3"
+                "result": "output_files_wRand/TransDecoder-noRS-single/mouse.ref_transcripts.fasta.wRand.transdecoder.gff3"
             }
                         
         }

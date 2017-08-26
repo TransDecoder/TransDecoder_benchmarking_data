@@ -27,8 +27,8 @@
 
 
 
-            "transdecoder-noRS-AGO": {
-                "result": "output_files_wRand/TransDecoder-noRS-AGO/dmel.fragmented_transcripts.fasta.wRand.transdecoder.gff3"
+            "transdecoder-noRS-single": {
+                "result": "output_files_wRand/TransDecoder-noRS-single/dmel.fragmented_transcripts.fasta.wRand.transdecoder.gff3"
             }
 
             

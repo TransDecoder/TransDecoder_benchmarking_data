@@ -22,8 +22,8 @@
                 "result" : "output_files_wRand/TransDecoder-noRS/athal.fragmented_transcripts.fasta.wRand.transdecoder.gff3"
             },
 
-            "TransDecoder-noRS-AGO" : {
-                "result" : "output_files_wRand/TransDecoder-noRS-AGO/athal.fragmented_transcripts.fasta.wRand.transdecoder.gff3"
+            "TransDecoder-noRS-single" : {
+                "result" : "output_files_wRand/TransDecoder-noRS-single/athal.fragmented_transcripts.fasta.wRand.transdecoder.gff3"
             }
 
 

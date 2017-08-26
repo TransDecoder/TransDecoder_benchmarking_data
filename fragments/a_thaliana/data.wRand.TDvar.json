@@ -1,0 +1,36 @@
+{
+    "data" : {
+
+        "STUDY" : "a_thaliana fragments",
+        
+        "REFERENCE": "input_files/athal.fragmented_transcripts.CDS.gff",
+
+        "PREDICTIONS": {
+
+            "transdecoder": {
+                "result": "output_files_wRand/TransDecoder/athal.fragmented_transcripts.fasta.wRand.transdecoder.gff3"
+            },
+            "longorfs": {
+                "result": "output_files_wRand/TransDecoder/athal.fragmented_transcripts.fasta.wRand.transdecoder_dir/longest_orfs.gff3"
+            },
+
+            "transdecoder-SS": {
+                "result": "output_files_wRand/TransDecoder-SS/athal.fragmented_transcripts.fasta.wRand.transdecoder.gff3"
+            },
+
+            "transdecoder-noRS" : {
+                "result" : "output_files_wRand/TransDecoder-noRS/athal.fragmented_transcripts.fasta.wRand.transdecoder.gff3"
+            },
+
+            "TransDecoder-noRS-AGO" : {
+                "result" : "output_files_wRand/TransDecoder-noRS-AGO/athal.fragmented_transcripts.fasta.wRand.transdecoder.gff3"
+            }
+
+
+        }
+    }
+}
+
+
+
+

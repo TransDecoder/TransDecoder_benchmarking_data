@@ -1,5 +1,6 @@
-zless  a_thaliana_ann.fna.gz  | grep '>' | perl -lane 's/>//; @x = split(/\|/); $x[1]=~ s/CDS://; ($cds_lend, $cds_rend) = split(/-/, $x[1]); print join("\t", $x[0], ".", "CDS", "$cds_lend", "$cds_rend", ".", "+", ".", ".");' > a_thaliana_ann.fna.CDS.gff
+c  athal.ref_transcripts.fasta  | grep '>' | perl -lane 's/>//; @x = split(/\|/); $x[1]=~ s/CDS://; ($cds_lend, $cds_rend) = split(/-/, $x[1]); print join("\t", $x[0], ".", "CDS", "$cds_lend", "$cds_rend", ".", "+", ".", ".");' > athal.ref_transcripts.CDS.gff
 
+GC_content.pl  < athal.ref_transcripts.fasta
+GC content: 42.0639693867891 %
 
-
-GC: 42.3%
+~/GITHUB/TransDecoder_benchmarking_data/utilities/mirror_random_fasta.py athal.ref_transcripts.fasta 42 > athal.ref_transcripts.fasta.wRand &

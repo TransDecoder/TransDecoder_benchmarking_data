@@ -1,47 +1,35 @@
 {
     "data" : {
-        
+
         "STUDY" : "d_melanogaster fragments",
         
-        "REFERENCE": "input_files/dmel-all-fragments.fasta.CDS.gff",
+        "REFERENCE": "input_files/dmel.fragmented_transcripts.CDS.gff",
 
         "PREDICTIONS": {
         
 
             "genemark": {
-                "result": "output_files/GeneMarkS-T/dmel-all-fragments.fasta.gff"
+                "result": "output_files/GeneMarkS-T/dmel.fragmented_transcripts.fasta.gff"
             },
-
             "genemark-SS": {
-                "result": "output_files/GeneMarkS-T-SS/dmel-all-fragments.fasta.gff"
+                "result": "output_files/GeneMarkS-T-SS/dmel.fragmented_transcripts.fasta.gff"
             },
-
 
 
             "transdecoder": {
-                "result": "output_files/TransDecoder/dmel-all-fragments.fasta.transdecoder.gff3"
-            },
-            "longorfs": {
-                "result": "output_files/TransDecoder/dmel-all-fragments.fasta.transdecoder_dir/longest_orfs.gff3"
+                "result": "output_files/TransDecoder/dmel.fragmented_transcripts.fasta.transdecoder.gff3"
             },
 
             "transdecoder-SS": {
-                "result": "output_files/TransDecoder-SS/dmel-all-fragments.fasta.transdecoder.gff3"
-            },
-            "longorfs-SS": {
-                "result": "output_files/TransDecoder-SS/dmel-all-fragments.fasta.transdecoder_dir/longest_orfs.gff3"
+                "result": "output_files/TransDecoder-SS/dmel.fragmented_transcripts.fasta.transdecoder.gff3"
             },
 
-
-            
             "prodigal": {
                 "result": "output_files/Prodigal/prodigal.out"
             },
             "prodigal-SS": {
                 "result": "output_files/Prodigal/prodigal.out.+only"
             }
-
-            
         }
     }
 }

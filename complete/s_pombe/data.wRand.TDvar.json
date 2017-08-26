@@ -24,7 +24,7 @@
             },
 
 
-            "transdecoder-noRS-AGO": {
+            "transdecoder-noRS-single": {
                 "result": "output_files_wRand/TransDecoder-noRS-AGO/spombe.ref_transcripts.fasta.wRand.transdecoder.gff3"
             }
 

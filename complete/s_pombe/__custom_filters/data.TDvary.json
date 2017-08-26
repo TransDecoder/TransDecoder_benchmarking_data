@@ -1,0 +1,58 @@
+{
+    "data" : {
+
+        "STUDY" : "s_pombe complete",
+        
+        "REFERENCE": "../input_files/spombe.ref_transcripts.CDS.gff",
+
+        "PREDICTIONS": {
+        
+            "genemark": {
+                "result": "../output_files_wRand/GeneMarkS-T/spombe.ref_transcripts.fasta.wRand.gff"
+            },
+
+
+            "transdecoder": {
+                "result": "../output_files_wRand/TransDecoder/spombe.ref_transcripts.fasta.wRand.transdecoder.gff3"
+            },
+
+            
+            "prodigal": {
+                "result": "../output_files_wRand/Prodigal/prodigal.out"
+            },
+
+            "td_fst_gt_zero": {
+                "result" : "td_fst_gt_zero.gff"
+            },
+
+            "td_gt0m3" : {
+                "result" : "td_gt0m3.gff"
+            },
+
+
+            "td_gt0mAll" : {
+                "result" : "td_gt0mAll.gff"
+            },
+
+            "td_long_orfs" : {
+                "result" : "td_long_orfs.gff"
+            },
+
+
+            "td_gt0m3Len" : {
+                "result" : "td_gt0m3Len.gff"
+            },
+
+
+            "td_gt0mAllLen" : {
+                "result" : "td_gt0mAllLen.gff"
+            }
+
+            
+        }
+    }
+}
+
+
+
+

@@ -55,7 +55,7 @@ sub process_cmd {
 
 
 sub get_transdecoder_cmd {
-    my ($fasta_file, $start_refinement_off, $consider_all_orfs) = @_;
+    my ($fasta_file, $start_refinement_off, $single_best) = @_;
 
     my $wRand = "";
     if ($fasta_file =~ /wRand$/) {
@@ -74,9 +74,9 @@ sub get_transdecoder_cmd {
         $params .= " --no_refine_starts ";
         $outdir .= "-noRS";
     }
-    if ($consider_all_orfs) {
-        $params .= " --all_good_orfs";
-        $outdir .= "-AGO";
+    if ($single_best) {
+        $params .= " --single_best_only";
+        $outdir .= "-single";
     }
 
                 
@@ -98,7 +98,7 @@ main: {
         my $full_path = "$PROJ_BASEDIR/$ref_file";
         
         print &get_transdecoder_cmd($full_path, 1) . "\n";  # noRS
-        print &get_transdecoder_cmd($full_path, 1, 1) . "\n"; # noRS AGO
+        print &get_transdecoder_cmd($full_path, 1, 1) . "\n"; # noRS single_best
     
                 
         

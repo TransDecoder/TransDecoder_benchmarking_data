@@ -1,4 +1,10 @@
-cat mmus-all.fasta  | grep '>' | perl -lane 's/>//; @x = split(/\|/); $x[1]=~ s/CDS://; ($cds_lend, $cds_rend) = split(/-/, $x[1]); print join("\t", $x[0], ".", "CDS", "$cds_lend", "$cds_rend", ".", "+", ".", ".");'  >  mmus-all.fasta.CDS.gff
 
 
-GC: 49.3%
+
+c mouse.ref_transcripts.fasta | grep '>' | perl -lane 's/>//; @x = split(/\|/); $x[1]=~ s/CDS://; ($cds_lend, $cds_rend) = split(/-/, $x[1]); print join("\t", $x[0], ".", "CDS", "$cds_lend", "$cds_rend", ".", "+", ".", ".");'  > mouse.ref_transcripts.CDS.gff 
+
+
+GC_content.pl  < mouse.ref_transcripts.fasta
+GC content: 51.7854948435522 %
+
+bhaas@delanatii $ ~/GITHUB/TransDecoder_benchmarking_data/utilities/mirror_random_fasta.py mouse.ref_transcripts.fasta 52 > mouse.ref_transcripts.fasta.wRand

@@ -21,7 +21,7 @@ set -ev
 
 ~/GITHUB/TransDecoder/util/misc/get_FP_FN_scores.py  longest_orfs.cds.scores longest_orfs.cds analysis_dir/def_custom_single.cds.gff.scored | sort -k12,12gr > custom.FP_FNs.dat
 
-../../__rpart/reforg_TD_rpart_selector.py  --long_orfs_cds longest_orfs.cds --long_orfs_scores longest_orfs.cds.scores
+../../../__rpart/reforg_TD_rpart_selector.py  --long_orfs_cds longest_orfs.cds --long_orfs_scores longest_orfs.cds.scores
 
 ~/GITHUB/TransDecoder_benchmarking_data/utilities/run_analysis_pipeline.py data.rpart.single.json single
 

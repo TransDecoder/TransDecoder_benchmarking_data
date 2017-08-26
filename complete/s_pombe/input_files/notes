@@ -1,3 +1,7 @@
-cat spombe-all.fasta  | grep '>' | perl -lane 's/>//; @x = split(/\|/); $x[1]=~ s/CDS://; ($cds_lend, $cds_rend) = split(/-/, $x[1]); print join("\t", $x[0], ".", "CDS", "$cds_lend", "$cds_rend", ".", "+", ".", ".");'  >  spombe-all.fasta.CDS.gff
+c spombe.ref_transcripts.fasta | grep '>' | perl -lane 's/>//; @x = split(/\|/); $x[1]=~ s/CDS://; ($cds_lend, $cds_rend) = split(/-/, $x[1]); print join("\t", $x[0], ".", "CDS", "$cds_lend", "$cds_rend", ".", "+", ".", ".");'  >  spombe.ref_transcripts.CDS.gff
 
-GC: 37.4%
+
+GC_content.pl < spombe.ref_transcripts.fasta
+GC content: 37.9350832524523 %
+
+bhaas@delanatii $ ~/GITHUB/TransDecoder_benchmarking_data/utilities/mirror_random_fasta.py spombe.ref_transcripts.fasta 38 > spombe.ref_transcripts.fasta.wRand 

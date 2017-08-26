@@ -1,4 +1,6 @@
-cat dmel-all.fasta | grep '>' | perl -lane 's/>//; @x = split(/\|/); $x[1]=~ s/CDS://; ($cds_lend, $cds_rend) = split(/-/, $x[1]); print join("\t", $x[0], ".", "CDS", "$cds_lend", "$cds_rend", ".", "+", ".", ".");'  > dmel-all.fasta.CDS.gff
+c dmel.ref_transcripts.fasta | grep '>' | perl -lane 's/>//; @x = split(/\|/); $x[1]=~ s/CDS://; ($cds_lend, $cds_rend) = split(/-/, $x[1]); print join("\t", $x[0], ".", "CDS", "$cds_lend", "$cds_rend", ".", "+", ".", ".");'  > dmel.ref_transcripts.CDS.gff
 
+GC_content.pl < dmel.ref_transcripts.fasta
+GC content: 50.9002928746496 %
 
-GC: 49.3%
+~/GITHUB/TransDecoder_benchmarking_data/utilities/mirror_random_fasta.py dmel.ref_transcripts.fasta 51 > dmel.ref_transcripts.fasta.wRand

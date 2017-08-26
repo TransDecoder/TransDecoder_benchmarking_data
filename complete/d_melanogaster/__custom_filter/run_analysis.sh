@@ -23,7 +23,7 @@ set -ev
 
 ## rpart trees:
 
-../../__rpart/reforg_TD_rpart_selector.py  --long_orfs_cds longest_orfs.cds --long_orfs_scores longest_orfs.cds.scores
+../../../__rpart/reforg_TD_rpart_selector.py  --long_orfs_cds longest_orfs.cds --long_orfs_scores longest_orfs.cds.scores
 
 ~/GITHUB/TransDecoder_benchmarking_data/utilities/run_analysis_pipeline.py data.rpart.single.json single
 

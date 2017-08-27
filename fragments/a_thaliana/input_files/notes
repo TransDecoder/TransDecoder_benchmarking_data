@@ -1,0 +1,9 @@
+~/GITHUB/TransDecoder_benchmarking_data/utilities/create_fragments.py athal.ref_transcripts.fasta > athal.fragmented_transcripts.fasta
+
+c athal.fragmented_transcripts.fasta | grep '>' | perl -lane 's/>//; @x = split(/\|/); $x[1]=~ s/CDS://; ($cds_lend, $cds_rend) = split(/-/, $x[1]); print join("\t", $x[0], ".", "CDS", "$cds_lend", "$cds_rend", ".", "+", ".", ".");' >  athal.fragmented_transcripts.CDS.gff
+
+
+GC_content.pl < athal.fragmented_transcripts.fasta
+GC content: 41.8422053167716 %
+
+bhaas@delanatii $ ~/GITHUB/TransDecoder_benchmarking_data/utilities/mirror_random_fasta.py athal.fragmented_transcripts.fasta 42 > athal.fragmented_transcripts.fasta.wRand

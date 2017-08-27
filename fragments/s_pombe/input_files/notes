@@ -1,0 +1,8 @@
+~/GITHUB/TransDecoder_benchmarking_data/utilities/create_fragments.py spombe.ref_transcripts.fasta > spombe.fragmented_transcripts.fasta
+
+bhaas@delanatii $ c spombe.fragmented_transcripts.fasta | grep '>' | perl -lane 's/>//; @x = split(/\|/); $x[1]=~ s/CDS://; ($cds_lend, $cds_rend) = split(/-/, $x[1]); print join("\t", $x[0], ".", "CDS", "$cds_lend", "$cds_rend", ".", "+", ".", ".");' >  spombe.fragmented_transcripts.CDS.gff
+
+bhaas@delanatii $ GC_content.pl < spombe.fragmented_transcripts.fasta
+GC content: 37.7072869376069 %
+
+bhaas@delanatii $ ~/GITHUB/TransDecoder_benchmarking_data/utilities/mirror_random_fasta.py  spombe.fragmented_transcripts.fasta 38 > spombe.fragmented_transcripts.fasta.wRand

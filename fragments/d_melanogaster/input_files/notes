@@ -1,0 +1,8 @@
+~/GITHUB/TransDecoder_benchmarking_data/utilities/create_fragments.py dmel.ref_transcripts.fasta > dmel.fragmented_transcripts.fasta
+
+bhaas@delanatii $ c dmel.fragmented_transcripts.fasta | grep '>' | perl -lane 's/>//; @x = split(/\|/); $x[1]=~ s/CDS://; ($cds_lend, $cds_rend) = split(/-/, $x[1]); print join("\t", $x[0], ".", "CDS", "$cds_lend", "$cds_rend", ".", "+", ".", ".");' > dmel.fragmented_transcripts.CDS.gff
+
+bhaas@delanatii $ GC_content.pl < dmel.fragmented_transcripts.fasta
+GC content: 50.6232048485841 %
+
+bhaas@delanatii $ ~/GITHUB/TransDecoder_benchmarking_data/utilities/mirror_random_fasta.py dmel.fragmented_transcripts.fasta 51 > dmel.fragmented_transcripts.fasta.wRand

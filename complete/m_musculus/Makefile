@@ -12,3 +12,6 @@ clean:
 	rm -rf ./analysis_dir*
 	rm -f ./*.pdf
 
+
+rerun_TransDecoder:
+	./rerun_TransDecoder.sh

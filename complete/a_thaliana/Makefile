@@ -12,3 +12,6 @@ clean:
 	rm -rf ./analysis_dir*
 
 
+
+rerun_TransDecoder:
+	./rerun_TransDecoder.sh

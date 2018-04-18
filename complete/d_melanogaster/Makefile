@@ -14,5 +14,5 @@ clean:
 	rm -f ./*.pdf
 
 rerun_TransDecoder:
-	./rerun_TransDecoder.sh
+	./rerun_TransDecoder.sh PRECLEAN
 

@@ -11,3 +11,8 @@ clean:
 	@for i in $(ORGS); do \
     echo "Running example in $$i..."; \
     (cd $$i; $(MAKE) clean) || exit $$?; done
+
+
+rerun_TransDecoder:
+	@for i in $(RUNTYPES); do \
+	(cd $$i; $(MAKE) rerun_TransDecoder) || exit $$?; done

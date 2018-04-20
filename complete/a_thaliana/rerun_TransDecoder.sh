@@ -4,8 +4,6 @@ set -ev
 
 BASEDIR=${PWD}
 
-PRECLEAN=$1
-
 # rerun 'regular'
 if [ $PRECLEAN ]; then
     rm -rf output_files/TransDecoder/*

@@ -256,7 +256,9 @@ plt.plot(x_n, y_n, marker ='+')
 x_n = [0] + x_n + [1]
 y_n = [0] + y_n + [1]
 
+
 roc_auc = auc(zip(x_n, y_n))
+
 
 print("#AUC = %.4f" % roc_auc) 
 
@@ -267,9 +269,13 @@ if not dname:
     dname = "."
     
 pdf_plot_filename = dname + "/" + predictor_name + ".roc.pdf"
-pp = PdfPages(pdf_plot_filename)
-pp.savefig(plt.gcf())
-pp.close()
-sys.stderr.write("Wrote ROC plot figure: {}\n".format(pdf_plot_filename))
+
+try:
+    pp = PdfPages(pdf_plot_filename)
+    pp.savefig(plt.gcf())
+    pp.close()
+    sys.stderr.write("Wrote ROC plot figure: {}\n".format(pdf_plot_filename))
+except:
+    pass
 
 sys.exit(0)

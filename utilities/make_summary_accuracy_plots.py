@@ -76,12 +76,16 @@ def main():
             (line_color, line_marker) = \
                          pred_type_to_color_and_marker[base_pred_type] = \
                          (base_colors[color_and_marker_index], base_markers[color_and_marker_index])
-        
-        (x_vals, y_vals, auc) = parse_roc_file(roc_file) 
 
-        plt.plot(x_vals, y_vals, marker=line_marker, ls=line_style, c=line_color, label=pred_type)
+        try:
+            (x_vals, y_vals, auc) = parse_roc_file(roc_file) 
+            
+            plt.plot(x_vals, y_vals, marker=line_marker, ls=line_style, c=line_color, label=pred_type)
 
-        auc_vals.append( (auc, pred_type) )
+            auc_vals.append( (auc, pred_type) )
+        except:
+            sys.stderr.write("error processing: {}, {}\n".format(pred_type, roc_file))
+    
 
     plt.legend(loc="lower right")
 

@@ -1,6 +1,6 @@
 ##gff-version 2
 ##source-version GeneMark.hmm_PROKARYOTIC 3.20
-##date: Sat Aug 26 11:08:28 2017
+##date: Tue Oct 16 12:14:58 2018
 # Sequence file name: /ahg/regev/users/bhaas/seq/bhaas/GIT/TransDecoder_benchmarking_data/utilities/../complete/d_melanogaster/input_files/dmel.ref_transcripts.fasta
 # Model file name: GeneMark_hmm.mod
 # RBS: true

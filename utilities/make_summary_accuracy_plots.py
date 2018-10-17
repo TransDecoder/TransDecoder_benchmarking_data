@@ -1,6 +1,8 @@
 #!/usr/bin/env python
 
 import os, sys
+import matplotlib
+matplotlib.use('pdf')
 import matplotlib.pyplot as plt
 from matplotlib.backends.backend_pdf import PdfPages
 import numpy as np
